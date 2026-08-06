@@ -8,8 +8,8 @@
 <link rel="icon" href="marchio/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="marchio/icona-180.png">
 <style>
-/* Caratteri ospitati qui, non su server esterni: resa identica ovunque,
-   nessuna richiesta verso terzi. Zilla Slab e IBM Plex Mono, licenza SIL OFL 1.1. */
+/* Caratteri ospitati qui, non su server esterni: resa identica ovunque
+   e nessuna richiesta verso terzi. Zilla Slab e IBM Plex Mono, SIL OFL 1.1. */
 @font-face{font-family:'Zilla Slab';font-style:normal;font-weight:700;font-display:block;
   src:url('caratteri/ZillaSlab-Bold.woff2') format('woff2')}
 @font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:700;font-display:block;
@@ -18,21 +18,14 @@
   src:url('caratteri/IBMPlexMono-Medium.woff2') format('woff2')}
 </style>
 <style>
-:root{
-  --avorio:#F4F0E6;--inchiostro:#16303B;--petrolio:#17605C;--rosso:#B93A28;--grafite:#5E6D72;
-  --punto-y:.155em;   /* distanza del puntino dall'alto della lettera */
-  --punto-x:0em;      /* scostamento orizzontale */
-  --punto-d:.185em;   /* diametro */
-}
+:root{--avorio:#F4F0E6;--inchiostro:#16303B;--petrolio:#17605C;--rosso:#B93A28;--grafite:#5E6D72}
 *{box-sizing:border-box}
 html,body{height:100%;overflow-x:hidden}
 body{margin:0;background:var(--avorio);color:var(--inchiostro);
   font-family:'IBM Plex Mono',ui-monospace,monospace;
-  display:flex;align-items:center;justify-content:center;
-  padding:1.25rem;text-align:center}
+  display:flex;align-items:center;justify-content:center;padding:1.25rem;text-align:center}
 main{max-width:100%}
 
-/* ---------------- marchio ---------------- */
 .dg{display:inline-flex;align-items:center;line-height:1;max-width:100%;
   font-size:clamp(1.35rem,6.2vw,3.4rem)}
 .dg__segno{display:block;flex:0 0 auto;margin-right:.035em}
@@ -42,13 +35,20 @@ main{max-width:100%}
   white-space:nowrap;color:var(--inchiostro)}
 .dg__nome b{color:var(--rosso)}
 
-/* la i col puntino nostro: line-height fissa a 1 così la posizione è prevedibile */
-.dg__i{position:relative;display:inline-block;line-height:1}
-.dg__i::after{content:"";position:absolute;
-  left:calc(50% + var(--punto-x));top:var(--punto-y);
-  transform:translateX(-50%);
-  width:var(--punto-d);height:var(--punto-d);border-radius:50%;
-  background:var(--petrolio)}
+/* --- il puntino della i ---------------------------------------------
+   In Zilla Slab Bold il puntino è un rettangolo di 129x134 millesimi di
+   em, con il bordo superiore a 665 millesimi sopra la linea di base e il
+   centro al 50,7% della larghezza di avanzamento. Quei numeri vengono dal
+   file del carattere, non da una stima a occhio.
+   La quota verticale si calcola a video: un elemento di altezza zero
+   allineato alla linea di base ne rivela la posizione esatta, qualunque
+   siano le metriche che il sistema operativo decide di usare.
+-------------------------------------------------------------------- */
+.dg__i{position:relative;display:inline-block}
+.dg__base{display:inline-block;width:0;height:0;vertical-align:baseline}
+.dg__punto{position:absolute;background:var(--petrolio);
+  width:.129em;height:.134em;left:50.7%;transform:translateX(-50%);
+  top:0;pointer-events:none}
 
 .dg__sotto{display:flex;justify-content:space-between;
   font-family:'IBM Plex Mono',ui-monospace,monospace;font-weight:700;
@@ -60,7 +60,6 @@ main{max-width:100%}
   transition:opacity .5s ease-out, transform .9s cubic-bezier(.3,1.1,.4,1)}
 .dg.vai .dg__segno .g{opacity:1;transform:translateY(0)}
 
-/* ---------------- avviso ---------------- */
 .avviso{margin:2.4rem 0 0;font-size:clamp(.62rem,2.6vw,.8rem);font-weight:500;
   letter-spacing:.16em;text-transform:uppercase;color:var(--grafite)}
 .avviso::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;
@@ -68,8 +67,7 @@ main{max-width:100%}
   animation:respiro 2.4s ease-in-out infinite}
 @keyframes respiro{0%,100%{opacity:1}50%{opacity:.25}}
 
-.riga{margin:1rem 0 0;font-size:clamp(.7rem,3vw,.85rem);color:var(--grafite);
-  word-break:break-word}
+.riga{margin:1rem 0 0;font-size:clamp(.7rem,3vw,.85rem);color:var(--grafite);word-break:break-word}
 .riga a{color:var(--petrolio)}
 .riga a:focus-visible{outline:2px solid var(--rosso);outline-offset:3px}
 
@@ -94,28 +92,28 @@ const SEGNO=[
   [99,34,6.5,'r2','#16303B',0],[99,60,6.5,'r2','#16303B',0],[99,86,6.5,'r2','#16303B',0]
 ];
 const SOTTOTITOLO="raccogli · elabora · decidi";
+const PUNTO_SOPRA_BASE = 0.665;   // bordo superiore del puntino, in em sopra la linea di base
 
 (function(){
   const dg=document.getElementById('marchio');
   const NS='http://www.w3.org/2000/svg';
+
   const svg=document.createElementNS(NS,'svg');
   svg.setAttribute('viewBox','0 0 120 120');
   svg.setAttribute('class','dg__segno');
   svg.setAttribute('aria-hidden','true');
-
   SEGNO.forEach(([x,y,r,forma,col,sposta],i)=>{
     let e;
     if(forma==='c'){
       e=document.createElementNS(NS,'circle');
       e.setAttribute('cx',x);e.setAttribute('cy',y);e.setAttribute('r',r);
-    } else {
+    }else{
       e=document.createElementNS(NS,'rect');
       e.setAttribute('x',x-r);e.setAttribute('y',y-r);
       e.setAttribute('width',r*2);e.setAttribute('height',r*2);
       e.setAttribute('rx',forma==='r5'?5:2);
     }
-    e.setAttribute('fill',col);
-    e.setAttribute('class','g');
+    e.setAttribute('fill',col);e.setAttribute('class','g');
     e.style.setProperty('--sposta',sposta+'px');
     e.style.transitionDelay=(i*45)+'ms';
     svg.appendChild(e);
@@ -123,7 +121,8 @@ const SOTTOTITOLO="raccogli · elabora · decidi";
 
   const testo=document.createElement('div');testo.className='dg__testo';
   const nome=document.createElement('div');nome.className='dg__nome';
-  nome.innerHTML='dati<b>grezz<span class="dg__i">i</span></b>';
+  nome.innerHTML='dati<b>grezz<span class="dg__i">i'
+    +'<i class="dg__base"></i><i class="dg__punto"></i></span></b>';
   const sotto=document.createElement('div');sotto.className='dg__sotto';
   for(const ch of SOTTOTITOLO){
     const s=document.createElement('span');
@@ -133,15 +132,22 @@ const SOTTOTITOLO="raccogli · elabora · decidi";
   testo.append(nome,sotto);
   dg.append(svg,testo);
 
+  const spanI = nome.querySelector('.dg__i');
+  const base  = nome.querySelector('.dg__base');
+  const punto = nome.querySelector('.dg__punto');
+
   function misura(){
     const h=testo.getBoundingClientRect().height;
-    svg.style.width=h+'px';svg.style.height=h+'px';
+    svg.style.width=h+'px'; svg.style.height=h+'px';
     sotto.style.width=nome.getBoundingClientRect().width+'px';
+
+    // quota del puntino, ricavata dalla linea di base reale
+    const corpo = parseFloat(getComputedStyle(nome).fontSize);
+    const yBase = base.getBoundingClientRect().top - spanI.getBoundingClientRect().top;
+    punto.style.top = (yBase - PUNTO_SOPRA_BASE*corpo) + 'px';
   }
   function avvia(){misura();requestAnimationFrame(()=>dg.classList.add('vai'));}
 
-  /* si misura subito, poi di nuovo quando i caratteri sono davvero arrivati:
-     se la rete è lenta la prima misura userebbe il carattere di ripiego */
   avvia();
   if(document.fonts){
     document.fonts.ready.then(misura);
@@ -150,8 +156,7 @@ const SOTTOTITOLO="raccogli · elabora · decidi";
       document.fonts.load('700 1em "IBM Plex Mono"')
     ]).then(misura).catch(()=>{});
   }
-  setTimeout(misura,1200);
-  setTimeout(misura,3000);
+  setTimeout(misura,1200); setTimeout(misura,3000);
   window.addEventListener('resize',misura);
 })();
 </script>
