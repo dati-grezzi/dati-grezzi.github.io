@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="COREZ">
+  <g transform="translate(12.0,12.0) scale(0.9600)">
+    <path d="M40 78 L86 32 L100 46 L54 92 Z" fill="#B93A28"/>
+    <path d="M78 24 L94 40 L86 32 L86 32 Z" fill="#B93A28"/>
+    <path d="M40 78 L54 92 L12 100 Z" fill="#E0A38F"/>
+    <path d="M20 98 L12 100 L14 92 Z" fill="#16303B"/>
+    <path d="M84 34 L98 48 L104 42 L90 28 Z" fill="#17605C"/>
+  </g>
+</svg>
