@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Icona datigrezzi">
+  <circle cx="24" cy="20" r="12.5" fill="#B93A28"/>
+  <circle cx="36" cy="60" r="10.5" fill="#B93A28"/>
+  <circle cx="26" cy="101" r="12.0" fill="#B93A28"/>
+  <rect x="78.5" y="14.5" width="23.0" height="23.0" rx="3.5" fill="#16303B"/>
+  <rect x="78.5" y="48.5" width="23.0" height="23.0" rx="3.5" fill="#16303B"/>
+  <rect x="78.5" y="82.5" width="23.0" height="23.0" rx="3.5" fill="#16303B"/>
+</svg>
