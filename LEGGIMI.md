@@ -1,59 +1,70 @@
-# Marchio datigrezzi
+# Loghi degli strumenti
 
-## Cosa c'è in questa cartella
+Ricostruiti come vettori veri: il testo è **convertito in tracciati**, quindi i file
+non dipendono da nessun carattere installato e si aprono identici ovunque —
+browser, Inkscape, Illustrator, un tipografo.
 
-**Il segno da solo**
+## Marchi distesi
 
-| File | Uso |
+| File | Composizione |
 |---|---|
-| `marchio.svg` | Versione a colori, su fondo chiaro |
-| `marchio-negativo.svg` | Su fondo scuro (l'ultima colonna diventa avorio) |
-| `marchio-mono.svg` | Una sola tinta: fotocopie, circolari, timbri |
-| `marchio-bianco.svg` | Tutto bianco, per fondi fotografici o pieni di colore |
+| `resplesso.svg` | RES rosso · plesso inchiostro · tazza con la scuola dentro |
+| `geclass.svg` | GE rosso · class inchiostro · pennino · riga petrolio |
+| `sostituto.svg` | SOS rosso · tituto inchiostro |
+| `corez.svg` | COREZ inchiostro · 4 rosso · punto inchiostro · 10 petrolio · matita |
+| `fantassist.png` | Per fondo chiaro — FANT inchiostro · ASSIST verde · pastiglia 2.0 |
+| `fantassist-fondo-scuro.png` | Per fondo scuro — stessa composizione in lime |
 
-**L'icona semplificata** — due colonne invece di quattro, perché sotto i 48 pixel le quattro si impastano.
+Sono più larghi che alti: vanno bene nell'intestazione di un'app o di un documento,
+non dentro un riquadro.
 
-| File | Uso |
-|---|---|
-| `favicon.svg` | Icona vettoriale del sito |
-| `icona-fondo-scuro.svg` | Stessa icona con fondo inchiostro |
-| `favicon-32.png`, `favicon-48.png` | Scheda del browser |
-| `icona-180.png` | Schermata Home su iPhone e iPad |
-| `icona-192.png`, `icona-512.png` | Manifest della PWA |
-| `marchio-1024.png` | Anteprima ad alta risoluzione |
+## Icone quadrate
 
-**Il marchio completo** — `marchio-completo.html`: segno più parola più sottotitolo, pronto da incollare.
+`resplesso-icona.svg` · `geclass-icona.svg` · `sostituto-icona.svg` · `corez-icona.svg`
+`fantassist-icona.svg` · `fantassist-icona-fondo-scuro.svg`
+
+Riquadro 120 × 120, fondo trasparente. Servono per le schede della home e per le
+icone delle applicazioni. Tengono la leggibilità fino a 48 pixel; sotto quella
+misura la matita e il salvagente cominciano a perdere i dettagli interni.
+
+Per SOStituto l'icona è un **salvagente**, che riprende il concetto originale del
+progetto — SOS, il soccorso — e funziona in piccolo molto meglio delle lettere.
 
 ## Colori
 
-| Nome | Codice | Dove |
-|---|---|---|
-| Inchiostro | `#16303B` | Colonna allineata, testo del nome |
-| Petrolio | `#17605C` | Colonna intermedia, puntino della i, sottotitolo |
-| Rosso | `#B93A28` | Colonne sparse, la parola "grezzi" |
-| Avorio | `#F4F0E6` | Fondo, e colonna finale sui fondi scuri |
+Gli stessi dell'identità di datigrezzi, per far sembrare gli strumenti una famiglia:
 
-## Regole d'uso
-
-- **Lo spazio libero attorno al segno** è pari all'altezza di un elemento della griglia. Sotto quella misura il marchio soffoca.
-- **Sotto i 48 pixel** si usa `favicon.svg`, mai il segno a quattro colonne.
-- **Il nome resta sempre tutto minuscolo.** Le maiuscole riseparano visivamente le due parole, che sono state unite di proposito.
-- **Il puntino verde sostituisce quello del carattere**, non ci si sovrappone.
-- **Il sottotitolo è giustificato** sull'esatta larghezza della parola: la spaziatura fra le lettere si ricalcola, non si imposta a mano.
+| Nome | Codice |
+|---|---|
+| Inchiostro | `#16303B` |
+| Petrolio | `#17605C` |
+| Rosso | `#B93A28` |
+| Avorio | `#F4F0E6` |
 
 ## Il carattere
 
-Zilla Slab 700 per il nome, IBM Plex Mono 700 per il sottotitolo. Entrambi gratuiti su Google Fonts e con licenza libera, quindi utilizzabili anche nei documenti stampati.
+Zilla Slab Bold, lo stesso del marchio datigrezzi. Nell'originale i quattro loghi
+usavano caratteri diversi fra loro: unificarli è ciò che li fa leggere come una
+collezione invece che come quattro progetti separati.
 
-## Se ti serve il marchio completo come immagine
+## Fantassist, il caso a parte
 
-Il file `marchio-completo.html` usa testo vivo, non tracciati: sul sito è la soluzione migliore, perché resta nitido a qualunque zoom e si modifica in un secondo. Ma un `.svg` con testo vivo si rompe sul computer di chi non ha i due caratteri installati.
+Fantassist tiene una tavolozza propria — lime `#D8F651` e verde bosco `#4C7A3D` —
+perché si rivolge a un pubblico diverso da quello scolastico. È una scelta, non una
+svista: il tono distinto segnala che quello strumento vive altrove.
 
-Quindi, per una carta intestata o un PDF da mandare a terzi, servono i tracciati. Due strade:
+Due avvertenze d'uso:
 
-1. **Aprire `marchio-completo.html` nel browser e stampare in PDF.** Il PDF incorpora i caratteri e non dipende più dalla loro presenza. È la via rapida.
-2. **Installare Zilla Slab e IBM Plex Mono, ricomporre il blocco in Inkscape e convertire il testo in tracciati** (`Tracciato → Da oggetto a tracciato`). È la via giusta se il marchio deve finire in mano a un tipografo.
+- **Su fondo chiaro va usata `fantassist-icona.svg`**, quella con la piastrella
+  scura incorporata. La versione trasparente è lime su trasparente: sull'avorio del
+  sito il contrasto è insufficiente e sotto i 48 pixel il segno scompare.
+- **`fantassist-icona-fondo-scuro.svg` serve solo sopra fondi scuri.** Il nome dice
+  dove va usata, non di che colore è.
 
-## Licenza
+I due marchi distesi sono PNG a 300 dpi, 1756 × 482, con trasparenza: bastano per il
+web e per la stampa fino a una quindicina di centimetri. Le icone quadrate sono
+invece vettoriali (viewBox 1024 × 1024) e non hanno limiti di scala.
 
-Il marchio segue la stessa licenza del progetto, GPL-3.0.
+## Manca
+
+GEODAM non ha ancora un logo.
