@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>datigrezzi</title>
-<meta name="description" content="Strumenti open source. Sito in costruzione.">
+<meta name="description" content="Strumenti gestionali open source per la scuola e anche per il resto. Sito in costruzione.">
 <link rel="icon" href="marchio/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="marchio/icona-180.png">
 <style>
@@ -18,16 +18,19 @@
   src:url('caratteri/IBMPlexMono-Medium.woff2') format('woff2')}
 </style>
 <style>
-:root{--avorio:#F4F0E6;--inchiostro:#16303B;--petrolio:#17605C;--rosso:#B93A28;--grafite:#5E6D72}
+:root{--avorio:#F4F0E6;--inchiostro:#16303B;--petrolio:#17605C;--rosso:#B93A28;
+  --grafite:#5E6D72;--bordo:#E3DCCB}
 *{box-sizing:border-box}
-html,body{height:100%;overflow-x:hidden}
-body{margin:0;background:var(--avorio);color:var(--inchiostro);
+html{overflow-x:hidden}
+body{margin:0;min-height:100%;background:var(--avorio);color:var(--inchiostro);
   font-family:'IBM Plex Mono',ui-monospace,monospace;
-  display:flex;align-items:center;justify-content:center;padding:1.25rem;text-align:center}
-main{max-width:100%}
+  display:flex;align-items:center;justify-content:center;
+  padding:2.5rem 1.25rem;text-align:center}
+main{max-width:100%;width:min(46rem,100%)}
 
+/* ---------------- marchio ---------------- */
 .dg{display:inline-flex;align-items:center;line-height:1;max-width:100%;
-  font-size:clamp(1.35rem,6.2vw,3.4rem)}
+  font-size:clamp(1.35rem,6.2vw,3.2rem)}
 .dg__segno{display:block;flex:0 0 auto;margin-right:.035em}
 .dg__testo{display:flex;flex-direction:column;align-items:flex-start;min-width:0}
 .dg__nome{font-family:'Zilla Slab',"Roboto Slab","Noto Serif",Georgia,serif;
@@ -35,20 +38,13 @@ main{max-width:100%}
   white-space:nowrap;color:var(--inchiostro)}
 .dg__nome b{color:var(--rosso)}
 
-/* --- il puntino della i ---------------------------------------------
-   In Zilla Slab Bold il puntino è un rettangolo di 129x134 millesimi di
-   em, con il bordo superiore a 665 millesimi sopra la linea di base e il
-   centro al 50,7% della larghezza di avanzamento. Quei numeri vengono dal
-   file del carattere, non da una stima a occhio.
-   La quota verticale si calcola a video: un elemento di altezza zero
-   allineato alla linea di base ne rivela la posizione esatta, qualunque
-   siano le metriche che il sistema operativo decide di usare.
--------------------------------------------------------------------- */
+/* il puntino della i: rettangolo di 129x134 millesimi di em, bordo superiore a
+   665 millesimi sopra la linea di base. Numeri presi dal file del carattere.
+   La quota si calcola a video, così vale su qualunque sistema. */
 .dg__i{position:relative;display:inline-block}
 .dg__base{display:inline-block;width:0;height:0;vertical-align:baseline}
-.dg__punto{position:absolute;background:var(--petrolio);
-  width:.129em;height:.134em;left:50.7%;transform:translateX(-50%);
-  top:0;pointer-events:none}
+.dg__punto{position:absolute;background:var(--petrolio);width:.129em;height:.134em;
+  left:50.7%;transform:translateX(-50%);top:0;pointer-events:none}
 
 .dg__sotto{display:flex;justify-content:space-between;
   font-family:'IBM Plex Mono',ui-monospace,monospace;font-weight:700;
@@ -60,14 +56,29 @@ main{max-width:100%}
   transition:opacity .5s ease-out, transform .9s cubic-bezier(.3,1.1,.4,1)}
 .dg.vai .dg__segno .g{opacity:1;transform:translateY(0)}
 
-.avviso{margin:2.4rem 0 0;font-size:clamp(.62rem,2.6vw,.8rem);font-weight:500;
+/* ---------------- frase ---------------- */
+.frase{font-family:'Zilla Slab',"Roboto Slab",Georgia,serif;font-weight:700;
+  font-size:clamp(1.05rem,3.4vw,1.5rem);line-height:1.35;
+  max-width:28rem;margin:2.6rem auto 0;color:var(--inchiostro)}
+.frase em{font-style:normal;color:var(--petrolio)}
+
+/* ---------------- loghi ---------------- */
+.loghi{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+  gap:clamp(1.6rem,5vw,3rem) clamp(2rem,6vw,3.6rem);
+  margin:3.4rem 0 0;padding:0;list-style:none}
+.loghi li{display:flex}
+.loghi img{display:block;height:clamp(30px,7.2vw,44px);width:auto;max-width:100%}
+
+/* ---------------- avviso e contatto ---------------- */
+.avviso{margin:3.4rem 0 0;font-size:clamp(.62rem,2.6vw,.78rem);font-weight:500;
   letter-spacing:.16em;text-transform:uppercase;color:var(--grafite)}
 .avviso::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;
   background:var(--rosso);margin-right:.7rem;vertical-align:middle;
   animation:respiro 2.4s ease-in-out infinite}
 @keyframes respiro{0%,100%{opacity:1}50%{opacity:.25}}
 
-.riga{margin:1rem 0 0;font-size:clamp(.7rem,3vw,.85rem);color:var(--grafite);word-break:break-word}
+.riga{margin:.9rem 0 0;font-size:clamp(.7rem,3vw,.82rem);color:var(--grafite);
+  word-break:break-word}
 .riga a{color:var(--petrolio)}
 .riga a:focus-visible{outline:2px solid var(--rosso);outline-offset:3px}
 
@@ -80,6 +91,17 @@ main{max-width:100%}
 <body>
 <main>
   <div class="dg" id="marchio"></div>
+
+  <p class="frase">Strumenti gestionali <em>open source</em> per la scuola e anche per il resto&hellip;</p>
+
+  <ul class="loghi">
+    <li><img src="loghi/sostituto.svg" alt="SOStituto"></li>
+    <li><img src="loghi/corez.svg" alt="COREZ 4.10"></li>
+    <li><img src="loghi/geclass.svg" alt="GEclass"></li>
+    <li><img src="loghi/resplesso.svg" alt="RESplesso"></li>
+    <li><img src="loghi/fantassist.png" alt="Fantassist 2.0"></li>
+  </ul>
+
   <p class="avviso">Sito in costruzione</p>
   <p class="riga"><a href="mailto:info@datigrezzi.it">info@datigrezzi.it</a></p>
 </main>
@@ -92,7 +114,7 @@ const SEGNO=[
   [99,34,6.5,'r2','#16303B',0],[99,60,6.5,'r2','#16303B',0],[99,86,6.5,'r2','#16303B',0]
 ];
 const SOTTOTITOLO="acquisisci · elabora · decidi";
-const PUNTO_SOPRA_BASE = 0.665;   // bordo superiore del puntino, in em sopra la linea di base
+const PUNTO_SOPRA_BASE = 0.665;
 
 (function(){
   const dg=document.getElementById('marchio');
@@ -132,19 +154,17 @@ const PUNTO_SOPRA_BASE = 0.665;   // bordo superiore del puntino, in em sopra la
   testo.append(nome,sotto);
   dg.append(svg,testo);
 
-  const spanI = nome.querySelector('.dg__i');
-  const base  = nome.querySelector('.dg__base');
-  const punto = nome.querySelector('.dg__punto');
+  const spanI=nome.querySelector('.dg__i');
+  const base =nome.querySelector('.dg__base');
+  const punto=nome.querySelector('.dg__punto');
 
   function misura(){
     const h=testo.getBoundingClientRect().height;
     svg.style.width=h+'px'; svg.style.height=h+'px';
     sotto.style.width=nome.getBoundingClientRect().width+'px';
-
-    // quota del puntino, ricavata dalla linea di base reale
-    const corpo = parseFloat(getComputedStyle(nome).fontSize);
-    const yBase = base.getBoundingClientRect().top - spanI.getBoundingClientRect().top;
-    punto.style.top = (yBase - PUNTO_SOPRA_BASE*corpo) + 'px';
+    const corpo=parseFloat(getComputedStyle(nome).fontSize);
+    const yBase=base.getBoundingClientRect().top - spanI.getBoundingClientRect().top;
+    punto.style.top=(yBase - PUNTO_SOPRA_BASE*corpo)+'px';
   }
   function avvia(){misura();requestAnimationFrame(()=>dg.classList.add('vai'));}
 
