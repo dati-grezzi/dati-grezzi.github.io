@@ -1,16 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="RESplesso">
   <g transform="translate(12.0,14.0) scale(0.9600)">
-    <g fill="none" stroke="#B93A28" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M8 36 h62 v28 a31 31 0 0 1 -62 0 z"/>
-      <path d="M70 44 h9 a13 13 0 0 1 0 26 h-9"/>
-      <path d="M4 100 h72"/>
-      <path d="M27 24 q7 -9 0 -18"/><path d="M50 24 q7 -9 0 -18"/>
+    <g fill="#16303B" transform="translate(38,54) scale(0.84) translate(-38,-57)">
+      <rect x="37.2" y="33" width="2.2" height="14"/>
+      <path d="M39.4 34 L53 38.5 L39.4 43 Z"/>
+      <path fill-rule="evenodd" d="
+        M15 57 L38 45 L61 57 Z
+        M19 57 H57 V81 H19 Z
+        M23 61.5 h9.5 v9 h-9.5 z
+        M43.5 61.5 h9.5 v9 h-9.5 z
+        M32.5 66 h11 v15 h-11 z"/>
+      <rect x="27.2" y="61.5" width="1.6" height="9"/>
+      <rect x="23" y="65.4" width="9.5" height="1.6"/>
+      <rect x="47.7" y="61.5" width="1.6" height="9"/>
+      <rect x="43.5" y="65.4" width="9.5" height="1.6"/>
+      <rect x="37.2" y="66" width="1.6" height="15"/>
     </g>
-    <g fill="#16303B">
-      <path d="M22 62 L39 50 L56 62 v18 h-34 z"/>
-      <rect x="27" y="66" width="9" height="7"/>
-      <rect x="42" y="66" width="9" height="7"/>
-      <rect x="34" y="74" width="10" height="6"/>
+    <g fill="none" stroke="#B93A28" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 32 h68 v30 a34 34 0 0 1 -68 0 z"/>
+      <path d="M72 40 h10 a15 15 0 0 1 0 30 h-10"/>
+      <path d="M0 98 h76"/>
+      <path d="M22 22 q8 -10 0 -20"/><path d="M38 22 q8 -10 0 -20"/><path d="M54 22 q8 -10 0 -20"/>
     </g>
   </g>
 </svg>

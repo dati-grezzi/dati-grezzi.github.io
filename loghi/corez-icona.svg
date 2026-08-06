@@ -1,9 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="COREZ">
-  <g transform="translate(12.0,12.0) scale(0.9600)">
-    <path d="M40 78 L86 32 L100 46 L54 92 Z" fill="#B93A28"/>
-    <path d="M78 24 L94 40 L86 32 L86 32 Z" fill="#B93A28"/>
-    <path d="M40 78 L54 92 L12 100 Z" fill="#E0A38F"/>
-    <path d="M20 98 L12 100 L14 92 Z" fill="#16303B"/>
-    <path d="M84 34 L98 48 L104 42 L90 28 Z" fill="#17605C"/>
+  <g transform="translate(12.0,12.0) scale(0.9600) rotate(38 50 50)">
+    <rect x="34" y="18" width="32" height="48" fill="#B93A28"/>
+    <rect x="56" y="18" width="10" height="48" fill="#8E2A1D"/>
+    <rect x="34" y="8"  width="32" height="10" fill="#17605C"/>
+    <path d="M34 8 h32 v-4 a6 6 0 0 0 -6 -6 h-20 a6 6 0 0 0 -6 6 z" fill="#EFEAE0"/>
+    <path d="M34 66 L66 66 L50 96 Z" fill="#E8BE9A"/>
+    <path d="M43 83 L57 83 L50 96 Z" fill="#16303B"/>
   </g>
 </svg>
