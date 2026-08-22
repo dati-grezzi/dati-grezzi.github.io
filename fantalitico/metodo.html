@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manuale tecnico — Fantalitico</title>
+<meta name="description" content="Tutte le formule del motore di Fantalitico, la teoria che le giustifica e il confronto tra costanti assunte e misurate sui dati reali della stagione.">
+<link rel="canonical" href="https://datigrezzi.it/fantalitico/metodo.html">
+<meta name="theme-color" content="#0C1A12">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Fantalitico · datigrezzi">
+<meta property="og:locale" content="it_IT">
+<meta property="og:url" content="https://datigrezzi.it/fantalitico/metodo.html">
+<meta property="og:title" content="Manuale tecnico — Fantalitico">
+<meta property="og:description" content="Tutte le formule del motore di Fantalitico, la teoria che le giustifica e il confronto tra costanti assunte e misurate sui dati reali della stagione.">
+<meta property="og:image" content="https://datigrezzi.it/fantalitico/anteprima.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="../marchio/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="caratteri.css">
+<link rel="stylesheet" href="documenti.css">
+</head>
+<body>
+
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<header class="testata">
+  <div class="wrap">
+    <nav class="briciole" aria-label="Percorso">
+      <a href="https://datigrezzi.it/">datigrezzi</a><span>/</span>
+      <a href="./">Fantalitico</a><span>/</span>
+      Manuale tecnico
+    </nav>
+    <img class="logo" src="../loghi/fantalitico-chiaro.png" width="1200" height="244" alt="Fantalitico">
+    <span class="kicker">Il motore, formula per formula</span>
+  </div>
+</header>
+
+<main class="wrap" id="contenuto">
+  <nav class="indice" aria-label="Indice del documento">
+    <h2>In questa pagina</h2>
+    <ul>
+<li><a href="#parte-1-architettura">Parte 1 — Architettura</a></li>
+<li><a href="#parte-2-le-formule-una-per-una">Parte 2 — Le formule, una per una</a><ul>
+<li><a href="#21-rating-base-shrinkage-bayesiano">2.1 Rating base — shrinkage bayesiano</a></li>
+<li><a href="#22-calendario-funzione-continua">2.2 Δ calendario — funzione continua</a></li>
+<li><a href="#22-bis-forza-della-propria-squadra-il-termine-nuovo">2.2-bis Forza della propria squadra — il termine nuovo</a></li>
+<li><a href="#23-rigorista">2.3 Rigorista</a></li>
+<li><a href="#24-bonus-performance-lunico-pezzo-gia-misurato">2.4 Bonus performance — l'unico pezzo già misurato</a></li>
+<li><a href="#25-fantavoto-atteso-e-valore-dello-slot">2.5 Fantavoto atteso e valore dello slot</a></li>
+<li><a href="#26-scelta-del-modulo">2.6 Scelta del modulo</a></li>
+<li><a href="#27-simulazione-monte-carlo">2.7 Simulazione Monte Carlo</a></li>
+<li><a href="#28-probabilita-di-vittoria-scheda-sfida">2.8 Probabilità di vittoria (scheda Sfida)</a></li>
+<li><a href="#29-punteggio-di-mercato">2.9 Punteggio di mercato</a></li>
+</ul>
+</li>
+<li><a href="#parte-3-la-verifica-assunto-contro-misurato">Parte 3 — La verifica: assunto contro misurato</a><ul>
+<li><a href="#31-sigma-la-volatilita-del-fantavoto">3.1 σ (sigma) — la volatilità del fantavoto</a></li>
+<li><a href="#32-prior-di-ruolo">3.2 Prior di ruolo</a></li>
+<li><a href="#33-bonus-rigorista">3.3 Bonus rigorista</a></li>
+<li><a href="#34-fattore-casa">3.4 Fattore casa ❌</a></li>
+<li><a href="#35-forza-dellavversario-e-la-scoperta-del-ruolo">3.5 Forza dell'avversario ❌ (e la scoperta del ruolo)</a></li>
+<li><a href="#36-k_shrink-la-scoperta-che-ribalta-il-tavolo">3.6 K_SHRINK — la scoperta che ribalta il tavolo ❌❌</a></li>
+<li><a href="#37-bench_fv">3.7 BENCH_FV</a></li>
+</ul>
+</li>
+<li><a href="#parte-4-cosa-non-va-in-ordine-di-gravita">Parte 4 — Cosa non va, in ordine di gravità</a><ul>
+<li><a href="#1-la-pipeline-legge-colonne-sbagliate-bloccante">🔴 1. La pipeline legge colonne sbagliate (bloccante)</a></li>
+<li><a href="#2-il-feed-understat-non-esiste-bonus-performance-spento">🟠 2. Il feed Understat non esiste → bonus performance spento</a></li>
+<li><a href="#3-le-costanti-sbagliate-corretto-il-17072026">✅ 3. Le costanti sbagliate — CORRETTO il 17/07/2026</a></li>
+<li><a href="#3-bis-la-verifica-delle-correzioni-funzionano-davvero">3-bis. La verifica delle correzioni: funzionano davvero?</a></li>
+<li><a href="#4-bonus-non-configurabili-per-lega">🟡 4. Bonus non configurabili per lega</a></li>
+<li><a href="#5-palle-recuperate-mancano-ancora">🟡 5. Palle recuperate: mancano ancora</a></li>
+<li><a href="#6-limiti-del-monte-carlo">🟡 6. Limiti del Monte Carlo</a></li>
+<li><a href="#7-cose-minori">🟢 7. Cose minori</a></li>
+</ul>
+</li>
+<li><a href="#parte-5-cosa-farei-in-ordine">Parte 5 — Cosa farei, in ordine</a></li>
+<li><a href="#parte-6-una-conclusione-onesta">Parte 6 — Una conclusione onesta</a></li>
+</ul>
+  </nav>
+  <div class="testo">
+<h1 id="fantalitico-il-motore-in-dettaglio">Fantalitico — Il motore, in dettaglio</h1>
+<p><em>Relazione tecnica · luglio 2026 · motore ricalibrato il 17/07/2026</em></p>
+<p>Questo documento descrive <strong>tutte</strong> le formule del motore, la teoria che le giustifica, e — la parte più
+importante — il confronto tra le costanti che ho <strong>assunto a tavolino</strong> e quelle <strong>misurate</strong> sui dati veri
+della stagione 2025-26 (10.504 fantavoti reali, 586 giocatori, 37 giornate).</p>
+<p>Anticipo le conclusioni:</p>
+<ol>
+<li><strong>Tre costanti su sei erano sbagliate in modo misurabile</strong> — ora corrette (Parte 3).</li>
+<li>Il motore <strong>ignorava la variabile più importante</strong>: la forza della squadra del giocatore. Ora c'è (2.2-bis).</li>
+<li>Una misura mette in discussione un'assunzione di fondo dell'intero impianto (3.6).</li>
+<li>Le correzioni migliorano tutte le metriche fuori campione, ma il guadagno finale <strong>non è ancora
+   statisticamente dimostrato</strong> (3-bis). Lo scrivo perché è vero.</li>
+</ol>
+<hr />
+<h2 id="parte-1-architettura">Parte 1 — Architettura</h2>
+<p>Il sistema ha tre stadi indipendenti:</p>
+<pre><code>[1] PIPELINE DATI          [2] MOTORE (in app)        [3] DECISIONI
+    GitHub Actions             JavaScript locale          cosa vedi
+    2 volte/settimana          gira sul telefono
+    ↓                          ↓                          ↓
+    players.json               rating giocatore           formazione ottima
+    classifica.json      →     fantavoto atteso     →     distribuzione del punteggio
+    calendario.json            simulazione                probabilità di vittoria
+    rigoristi.json                                        spunti di mercato
+    indisponibili.json
+    (understat.json)
+</code></pre>
+<p>Scelta progettuale di fondo: <strong>nessun server, nessun account</strong>. La pipeline produce file statici, l'app li
+legge e calcola tutto sul telefono. Le tue rose vivono nella memoria locale del browser. Costo: zero.
+Prezzo: nessuna sincronizzazione tra dispositivi.</p>
+<hr />
+<h2 id="parte-2-le-formule-una-per-una">Parte 2 — Le formule, una per una</h2>
+<h3 id="21-rating-base-shrinkage-bayesiano">2.1 Rating base — shrinkage bayesiano</h3>
+<p>Il problema: un attaccante con <strong>2 presenze e fantamedia 8,5</strong> è un fuoriclasse o un fortunato? La
+fantamedia grezza dice "fuoriclasse". Il buon senso dice "aspetta".</p>
+<p>La soluzione formale è lo <strong>shrinkage</strong> (restringimento verso la media), che nasce dal lavoro di
+James e Stein (1961) e ha una lettura bayesiana naturale: la fantamedia osservata viene mescolata
+con un <em>prior</em> di ruolo, pesando i due termini per quanta evidenza abbiamo.</p>
+<pre><code>                pv · FM  +  K · prior(ruolo)
+   rating  =  ───────────────────────────────
+                      pv  +  K
+</code></pre>
+<p>dove <code>pv</code> = presenze, <code>FM</code> = fantamedia stagionale, <code>K</code> = forza dello shrinkage.</p>
+<p><strong>Lettura intuitiva</strong>: è come se ogni giocatore partisse con <code>K</code> "partite fantasma" giocate esattamente
+alla media del suo ruolo. Con poche presenze reali, quelle fantasma dominano e il giudizio resta prudente;
+con 30 presenze, i dati veri prendono il sopravvento.</p>
+<p><strong>Costanti attuali (ricalibrate il 17/07/2026)</strong>: <code>K = {P: 28, D: 16, C: 15, A: 19}</code>,
+<code>prior = {P: 5.02, D: 5.99, C: 6.20, A: 6.53}</code> — tutte <strong>misurate</strong>, non più assunte.</p>
+<p>Il valore teoricamente ottimo di K (Bayes empirico) è:</p>
+<pre><code>   K*  =  σ²(rumore di giornata)  /  σ²(vera differenza tra giocatori)
+</code></pre>
+<p>Cioè: <strong>quanto più il fantavoto di giornata è rumoroso rispetto alle vere differenze tra giocatori, tanto
+più bisogna restringere</strong>. Vedi Parte 3.6 per la misura — è la scoperta più importante del documento.</p>
+<hr />
+<h3 id="22-calendario-funzione-continua">2.2 Δ calendario — funzione continua</h3>
+<p>Il tuo Excel del 2019 usava coefficienti <strong>a gradini</strong>: TOP7/FLOP7, moltiplicatori da 1,5 a 0,3. Funzionava,
+ma aveva due difetti: la 7ª e l'8ª in classifica venivano trattate in modo radicalmente diverso pur essendo
+quasi identiche (discontinuità arbitraria), e il coefficiente era <em>moltiplicativo</em> — penalizzava di più chi
+già valeva di più, il che non ha giustificazione.</p>
+<p>La versione attuale è <strong>continua, additiva e dipendente dal ruolo</strong>:</p>
+<pre><code>   Δcal(ruolo) =  HOME[ruolo] · (casa − 0,5)  +  OPP[ruolo] · (forza_avversario − 0,5)
+</code></pre>
+<p>con i coefficienti <strong>misurati</strong> (vedi 3.4 e 3.5):</p>
+<div class="tabella"><table>
+<thead>
+<tr>
+<th>Ruolo</th>
+<th>HOME</th>
+<th>OPP</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Portieri</td>
+<td>+0,167</td>
+<td><strong>−1,018</strong></td>
+</tr>
+<tr>
+<td>Difensori</td>
+<td>+0,172</td>
+<td>−0,534</td>
+</tr>
+<tr>
+<td>Centrocampisti</td>
+<td>+0,144</td>
+<td>−0,444</td>
+</tr>
+<tr>
+<td>Attaccanti</td>
+<td>+0,155</td>
+<td>−0,891</td>
+</tr>
+</tbody>
+</table></div>
+<p>Il Δ è <em>additivo</em> perché nel fantacalcio i bonus sono additivi: affrontare una difesa debole aggiunge
+probabilità di gol, non moltiplica il talento.</p>
+<p><strong>Perché dipende dal ruolo</strong>: un portiere contro una squadra forte subisce più tiri e ogni gol è −1;
+un centrocampista fa il suo lavoro più o meno uguale contro chiunque. La misura conferma:
+il portiere è colpito <strong>2,3 volte più</strong> del centrocampista.</p>
+<h3 id="22-bis-forza-della-propria-squadra-il-termine-nuovo">2.2-bis Forza della propria squadra — il termine nuovo</h3>
+<p>Il motore guardava solo l'avversario e <strong>ignorava la squadra del giocatore</strong>. I dati dicono che è
+l'errore più grosso: la forza della <em>propria</em> squadra predice il fantavoto <strong>più</strong> di quella
+dell'avversario (+0,825 contro −0,590; per i centrocampisti 1,8 volte tanto).</p>
+<pre><code>   team_adj(ruolo)  =  GAMMA[ruolo] · (forza_propria_squadra − 0,5)
+</code></pre>
+<div class="tabella"><table>
+<thead>
+<tr>
+<th>Ruolo</th>
+<th>GAMMA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Portieri</td>
+<td>+0,476</td>
+</tr>
+<tr>
+<td>Difensori</td>
+<td>+0,432</td>
+</tr>
+<tr>
+<td>Centrocampisti</td>
+<td>+0,436</td>
+</tr>
+<tr>
+<td>Attaccanti</td>
+<td>+0,464</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Non è doppio conteggio</strong> (obiezione ovvia: "chi gioca nell'Inter ha già una fantamedia alta"):
+il termine resta <strong>significativo in ogni ruolo anche controllando per la fantamedia passata</strong>
+del giocatore. Il motivo è profondo — la fantamedia individuale è una stima <em>rumorosissima</em>
+(vedi 3.6), mentre la classifica della squadra è stimata su 38 partite × 11 giocatori, quindi è
+un indicatore del contesto <strong>molto più preciso</strong> di quanto il giocatore dica di sé.</p>
+<p><strong>Dove va</strong>: la forza della propria squadra varia appena <strong>0,005</strong> dentro una stagione — è una
+<em>costante del giocatore</em>, non un fattore di giornata. Perciò entra nel <strong>rating</strong>, non nel Δ
+calendario. Architettura corretta:</p>
+<pre><code>   rating_giocatore  =  shrunk(fantamedia)  +  team_adj        ← costante nella stagione
+   Δgiornata         =  Δcal(avversario, casa)                 ← cambia ogni settimana
+</code></pre>
+<p><em>Nota storica: è esattamente l'intuizione del foglio Excel 2019 — "non conta il blasone, conta
+la posizione attuale in classifica della squadra". I dati le danno ragione.</em></p>
+<p><strong>Nota</strong>: a campionato fermo <code>Δcal = 0</code> per tutti — l'app lo dichiara esplicitamente.</p>
+<hr />
+<h3 id="23-rigorista">2.3 Rigorista</h3>
+<pre><code>   se rigorista:  +0,30
+</code></pre>
+<p>Giustificazione teorica: un rigore vale +3 (gol) e i rigori in Serie A sono circa 0,25 a partita per squadra,
+con conversione ~78%. Il rigorista designato incassa quindi circa <code>0,25 × 0,78 × 3 ≈ 0,58</code> per partita
+<em>quando la sua squadra ottiene un rigore</em>, spalmato su tutte le partite. Il valore di 0,30 è una stima
+prudente. Vedi 3.3 per la misura.</p>
+<p>Il flag viene proposto automaticamente dalla pagina rigoristi ma resta modificabile: la gerarchia reale
+la conosci tu meglio di un sito.</p>
+<hr />
+<h3 id="24-bonus-performance-lunico-pezzo-gia-misurato">2.4 Bonus performance — l'unico pezzo già misurato</h3>
+<p>Questo blocco <strong>non</strong> è frutto di intuizione: i pesi sono stati stimati su 7.270 osservazioni
+giocatore-giornata con una regressione standardizzata, controllando per la forma passata.</p>
+<pre><code>   bonus  =  β(ruolo, segnale) · σ_FV(ruolo) · clamp( (valore − media) / sd , −2, +2 )
+</code></pre>
+<p>Il <code>clamp</code> a ±2 deviazioni standard evita che un valore anomalo (un giocatore con 3 partite e 8 tiri a
+partita) faccia esplodere il bonus.</p>
+<div class="tabella"><table>
+<thead>
+<tr>
+<th>Ruolo</th>
+<th>Tiri p90 (β)</th>
+<th>xA p90 (β)</th>
+<th>xG p90</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Attaccanti</td>
+<td><strong>0,112</strong></td>
+<td>~0</td>
+<td>scartato</td>
+</tr>
+<tr>
+<td>Centrocampisti</td>
+<td><strong>0,103</strong></td>
+<td>~0</td>
+<td>scartato</td>
+</tr>
+<tr>
+<td>Difensori</td>
+<td>0,051</td>
+<td><strong>0,077</strong></td>
+<td>scartato</td>
+</tr>
+<tr>
+<td>Portieri</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Due scoperte contro-intuitive emerse dalla validazione:</strong></p>
+<ol>
+<li>
+<p><strong>L'xG non serve, i tiri sì.</strong> Messi entrambi nella stessa regressione, il volume di tiri predice il
+   fantavoto futuro e l'xG non aggiunge nulla. Ragione: il fantacalcio premia il <em>fare gol</em> col +3, e chi
+   tira spesso ha più occasioni di far scattare il bonus; la qualità-per-tiro conta meno della frequenza.
+   <em>Il tuo foglio del 2019, che usava i tiri grezzi, aveva ragione.</em></p>
+</li>
+<li>
+<p><strong>Per i difensori vale l'xA, non i tiri.</strong> I terzini e i braccetti che <em>creano</em> predicono il proprio
+   fantavoto futuro meglio di quelli che tirano.</p>
+</li>
+</ol>
+<p><strong>Effetto pratico</strong>: un attaccante che tira molto (+1 dev. std.) guadagna ≈ <strong>+0,21</strong> di fantavoto atteso;
+un cecchino estremo (+2 sd) ≈ +0,42. È un tie-breaker, non un ribaltone — ed è giusto così.</p>
+<p>⚠️ <strong>Stato attuale: il bonus è spento</strong>, perché manca il feed <code>understat.json</code>. Vedi Parte 4.</p>
+<hr />
+<h3 id="25-fantavoto-atteso-e-valore-dello-slot">2.5 Fantavoto atteso e valore dello slot</h3>
+<pre><code>   E[FV]  =  shrunk(fantamedia)  +  team_adj  +  Δcal(ruolo)  +  bonus_rigorista  +  bonus_performance
+             └──────────── rating di giocatore ────────────┘   └── contesto di giornata ──┘
+</code></pre>
+<p>Ma un giocatore vale solo se <strong>gioca</strong>. Da qui il valore atteso dello <em>slot</em> in formazione:</p>
+<pre><code>   E[slot]  =  p_tit · E[FV]  +  (1 − p_tit) · BENCH_FV
+</code></pre>
+<p>dove <code>p_tit</code> è la probabilità di essere titolare (0-100%, che imposti tu) e <code>BENCH_FV = 4,0</code> è il valore
+attribuito allo slot quando il titolare non gioca.</p>
+<p>Questa formula è il cuore del tuo ragionamento originale: <strong>la titolarità non è un dettaglio, è un
+moltiplicatore</strong>. Un fuoriclasse con p_tit = 30% vale meno di un onesto mestierante che gioca sempre.</p>
+<hr />
+<h3 id="26-scelta-del-modulo">2.6 Scelta del modulo</h3>
+<p>Per ciascuno dei 7 moduli si prende il meglio disponibile per reparto e si somma:</p>
+<pre><code>   EV(modulo)  =  Σ  E[slot_i]        per gli 11 titolari scelti greedy per ruolo
+   modulo* = argmax EV(modulo)
+</code></pre>
+<p><strong>Perché il greedy è corretto qui</strong>: i vincoli sono <em>separabili per ruolo</em> (1 portiere, D difensori,
+C centrocampisti, A attaccanti) e non c'è interazione tra giocatori. In queste condizioni prendere i
+migliori per ruolo è <strong>provatamente ottimo</strong>, non un'euristica. (Se un domani introducessimo il
+modificatore di difesa, che premia la difesa <em>della stessa squadra</em>, questa proprietà cadrebbe e servirebbe
+un solver vero — il tuo CP-SAT, per capirci.)</p>
+<hr />
+<h3 id="27-simulazione-monte-carlo">2.7 Simulazione Monte Carlo</h3>
+<p>Il valore atteso dice dove si va a parare <em>in media</em>. Ma tu la domenica giochi <strong>una</strong> partita, non mille.
+Serve la distribuzione.</p>
+<pre><code>   ripeti 3.000 volte:
+      totale = 0
+      per ogni titolare:
+          se  random() &lt; p_tit:                        # gioca
+              totale += E[FV] + σ(ruolo) · Z           # Z ~ Normale(0,1), Box-Muller
+          altrimenti:                                   # non gioca → entra la panchina
+              totale += E[FV_riserva] · 0,97 + σ · Z
+      registra totale
+</code></pre>
+<p>Da cui: mediana, banda P10–P90, e <strong>P(totale ≥ soglia)</strong>.</p>
+<p><strong>Assunzioni sotto</strong>, tutte discutibili e tutte da segnalare:</p>
+<ul>
+<li>
+<p>il fantavoto è <strong>gaussiano</strong>. In realtà è asimmetrico: il +3 del gol crea una coda destra. La gaussiana
+  sottostima quindi la probabilità di exploit.</p>
+</li>
+<li>
+<p>i fantavoti sono <strong>indipendenti</strong> tra loro. Falso: due giocatori della stessa squadra sono correlati
+  (se il Napoli vince 4-0, salgono tutti). Questo fa <strong>sottostimare la varianza</strong> del totale.</p>
+</li>
+<li>
+<p>le σ sono costanti per ruolo. Vedi 3.1.</p>
+</li>
+</ul>
+<hr />
+<h3 id="28-probabilita-di-vittoria-scheda-sfida">2.8 Probabilità di vittoria (scheda Sfida)</h3>
+<p>Si simulano entrambe le formazioni e si confrontano campioni casuali:</p>
+<pre><code>   P(vinco)  =  P(X &gt; Y)  +  ½ · P(X = Y)          X = mio totale, Y = totale avversario
+</code></pre>
+<p>su 4.000 accoppiamenti estratti dalle due distribuzioni. I pareggi si dividono a metà (nel fantacalcio
+un pari secco è raro ma esiste, e va spartito).</p>
+<p>⚠️ <strong>Asimmetria dichiarata</strong>: la <em>tua</em> formazione usa i tuoi ritocchi (titolarità, squalifiche); quella
+avversaria parte da impostazioni standard (p_tit = 75% per tutti). Questo ti dà un lieve vantaggio
+informativo che <strong>gonfia la tua probabilità stimata</strong>. Ne sono consapevole, l'app lo scrive.</p>
+<hr />
+<h3 id="29-punteggio-di-mercato">2.9 Punteggio di mercato</h3>
+<pre><code>   market_score  =  (rating + team_adj) · (0,15  +  0,85 · min(pv / 25 , 1))
+                     ↑                    ↑
+                  qualità            titolarità (25 presenze ≈ titolare fisso)
+</code></pre>
+<p>La titolarità entra come <strong>moltiplicatore quasi puro</strong>: chi non gioca mai viene azzerato quasi del tutto,
+esattamente com'era nella tua richiesta ("non è solo la sua media che mi interessa, bensì la sua titolarità").</p>
+<p>Svincolato = giocatore il cui id non compare in <strong>nessuna</strong> rosa della lega selezionata.</p>
+<hr />
+<h2 id="parte-3-la-verifica-assunto-contro-misurato">Parte 3 — La verifica: assunto contro misurato</h2>
+<p>Ecco la parte che conta. Ho preso le costanti del motore e le ho confrontate con la realtà della
+stagione 2025-26.</p>
+<h3 id="31-sigma-la-volatilita-del-fantavoto">3.1 σ (sigma) — la volatilità del fantavoto</h3>
+<div class="tabella"><table>
+<thead>
+<tr>
+<th>Ruolo</th>
+<th>Assunta</th>
+<th><strong>Misurata</strong></th>
+<th>Errore</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Portieri</td>
+<td>1,10</td>
+<td><strong>1,55</strong></td>
+<td><strong>+40%</strong> ❌</td>
+</tr>
+<tr>
+<td>Difensori</td>
+<td>1,20</td>
+<td><strong>1,07</strong></td>
+<td>−11% ⚠️</td>
+</tr>
+<tr>
+<td>Centrocampisti</td>
+<td>1,40</td>
+<td><strong>1,33</strong></td>
+<td>−5% ✓</td>
+</tr>
+<tr>
+<td>Attaccanti</td>
+<td>1,90</td>
+<td><strong>1,90</strong></td>
+<td>0% ✓</td>
+</tr>
+</tbody>
+</table></div>
+<p>Attaccanti perfetti, centrocampisti ottimi. Ma i <strong>portieri</strong> li avevo giudicati i più stabili e sono invece
+i secondi più volatili: clean sheet contro tre gol subiti, più i rigori parati (+3), producono oscillazioni
+larghe. Conseguenza pratica: <strong>l'app sottostima l'incertezza</strong> quando hai un portiere in campo, cioè sempre.</p>
+<h3 id="32-prior-di-ruolo">3.2 Prior di ruolo</h3>
+<div class="tabella"><table>
+<thead>
+<tr>
+<th>Ruolo</th>
+<th>Assunto</th>
+<th><strong>Misurato</strong></th>
+<th>Errore</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Portieri</td>
+<td>4,60</td>
+<td><strong>5,02</strong></td>
+<td>+0,42 ⚠️</td>
+</tr>
+<tr>
+<td>Difensori</td>
+<td>5,80</td>
+<td><strong>5,99</strong></td>
+<td>+0,19</td>
+</tr>
+<tr>
+<td>Centrocampisti</td>
+<td>6,10</td>
+<td><strong>6,20</strong></td>
+<td>+0,10 ✓</td>
+</tr>
+<tr>
+<td>Attaccanti</td>
+<td>6,40</td>
+<td><strong>6,53</strong></td>
+<td>+0,13 ✓</td>
+</tr>
+</tbody>
+</table></div>
+<p>Sistematicamente un po' bassi, ma nell'ordine di grandezza giusto. Il portiere è di nuovo il peggiore.</p>
+<h3 id="33-bonus-rigorista">3.3 Bonus rigorista</h3>
+<div class="tabella"><table>
+<thead>
+<tr>
+<th>Ruolo</th>
+<th>Misurato</th>
+<th>Nel motore</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Centrocampisti</td>
+<td><strong>+0,33</strong></td>
+<td>+0,30 ✓</td>
+</tr>
+<tr>
+<td>Attaccanti</td>
+<td><strong>+0,48</strong></td>
+<td>+0,30 ⚠️</td>
+</tr>
+</tbody>
+</table></div>
+<p>Onestà statistica: campioni piccolissimi (7 centrocampisti e 5 attaccanti con ≥3 rigori calciati). È un
+indizio, non una prova. Ma suggerisce che per gli attaccanti il bonus vada alzato.</p>
+<h3 id="34-fattore-casa">3.4 Fattore casa ❌</h3>
+<div class="tabella"><table>
+<thead>
+<tr>
+<th></th>
+<th>Valore</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nel motore</td>
+<td>±0,15 → <strong>scarto casa−trasferta = 0,30</strong></td>
+</tr>
+<tr>
+<td><strong>Misurato</strong></td>
+<td><strong>scarto = +0,146 ± 0,059</strong> (significativo)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Il motore raddoppia il vantaggio del campo.</strong> Il valore corretto sarebbe <code>±0,073</code>.</p>
+<p>Per ruolo: difensori +0,170 e centrocampisti +0,131 (entrambi significativi); portieri +0,134 e
+attaccanti +0,139 non raggiungono la significatività per via del campione più piccolo.</p>
+<h3 id="35-forza-dellavversario-e-la-scoperta-del-ruolo">3.5 Forza dell'avversario ❌ (e la scoperta del ruolo)</h3>
+<div class="tabella"><table>
+<thead>
+<tr>
+<th></th>
+<th>Pendenza</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Nel motore</td>
+<td><strong>−0,90</strong> (uguale per tutti)</td>
+</tr>
+<tr>
+<td><strong>Misurato (tutti)</strong></td>
+<td><strong>−0,626 ± 0,117</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>Il segno è giusto e l'effetto è reale e significativo, ma <strong>il motore lo esagera del ~44%</strong>.</p>
+<p>E qui la scoperta vera — <strong>l'effetto dipende fortissimamente dal ruolo</strong>:</p>
+<div class="tabella"><table>
+<thead>
+<tr>
+<th>Ruolo</th>
+<th>Pendenza misurata</th>
+<th>Lettura</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Portieri</strong></td>
+<td><strong>−1,274</strong></td>
+<td>affrontare la prima invece dell'ultima costa 1,27 di fantavoto</td>
+</tr>
+<tr>
+<td>Attaccanti</td>
+<td>−0,858</td>
+<td></td>
+</tr>
+<tr>
+<td>Difensori</td>
+<td>−0,498</td>
+<td></td>
+</tr>
+<tr>
+<td>Centrocampisti</td>
+<td>−0,473</td>
+<td>quasi indifferenti all'avversario</td>
+</tr>
+</tbody>
+</table></div>
+<p>Un portiere è colpito <strong>2,7 volte più di un centrocampista</strong>. Ha perfettamente senso: contro una squadra
+forte il portiere subisce più tiri e ogni gol è −1; il centrocampista fa il suo lavoro più o meno uguale
+contro chiunque. <strong>Il motore ignora completamente questa differenza.</strong></p>
+<h3 id="36-k_shrink-la-scoperta-che-ribalta-il-tavolo">3.6 K_SHRINK — la scoperta che ribalta il tavolo ❌❌</h3>
+<div class="tabella"><table>
+<thead>
+<tr>
+<th>Ruolo</th>
+<th>σ²(rumore giornata)</th>
+<th>σ²(vere differenze)</th>
+<th><strong>K* ottimo</strong></th>
+<th>Nel motore</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Portieri</td>
+<td>2,376</td>
+<td>0,084</td>
+<td><strong>28,4</strong></td>
+<td>8</td>
+</tr>
+<tr>
+<td>Difensori</td>
+<td>1,064</td>
+<td>0,065</td>
+<td><strong>16,4</strong></td>
+<td>8</td>
+</tr>
+<tr>
+<td>Centrocampisti</td>
+<td>1,622</td>
+<td>0,105</td>
+<td><strong>15,4</strong></td>
+<td>8</td>
+</tr>
+<tr>
+<td>Attaccanti</td>
+<td>3,306</td>
+<td>0,170</td>
+<td><strong>19,4</strong></td>
+<td>8</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Il motore restringe da 2 a 3,5 volte troppo poco.</strong> Ma il dato davvero impressionante è il rapporto tra
+le due varianze: il <strong>rumore di giornata è 10-28 volte più grande delle vere differenze tra giocatori</strong>
+dello stesso ruolo.</p>
+<p>Detto brutalmente: <strong>due centrocampisti presi a caso in Serie A sono molto più simili di quanto la
+fantamedia lasci credere</strong>, e quasi tutto ciò che vedi in una singola giornata è caso.</p>
+<p>La conferma indipendente:</p>
+<div class="tabella"><table>
+<thead>
+<tr>
+<th>Ruolo</th>
+<th>correlazione(fantamedia passata → fantavoto successivo)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Portieri</td>
+<td>+0,078</td>
+</tr>
+<tr>
+<td>Difensori</td>
+<td>+0,143</td>
+</tr>
+<tr>
+<td>Centrocampisti</td>
+<td>+0,137</td>
+</tr>
+<tr>
+<td>Attaccanti</td>
+<td>+0,110</td>
+</tr>
+</tbody>
+</table></div>
+<p><em>(Il +0,239 "complessivo" è ingannevole: cattura soprattutto il fatto che gli attaccanti segnano più dei
+difensori, non che i giocatori bravi rendano più di quelli scarsi.)</em></p>
+<p><strong>Cosa significa, onestamente</strong>: il potere predittivo di <em>qualunque</em> modello basato su fantamedia e
+statistiche è <strong>strutturalmente piccolo</strong>. Non è un difetto del nostro motore: è la natura del gioco. Chi
+ti vende il "sistema infallibile" mente.</p>
+<p>Ma attenzione a non trarre la conclusione sbagliata: <strong>un vantaggio piccolo ripetuto 38 volte è comunque
+un vantaggio</strong>. È esattamente la logica del banco al casinò — margine minimo, tanti giri. La differenza è
+che ora <em>sappiamo quanto</em> è piccolo, invece di illuderci.</p>
+<h3 id="37-bench_fv">3.7 BENCH_FV</h3>
+<div class="tabella"><table>
+<thead>
+<tr>
+<th>Ruolo</th>
+<th>Rendimento medio delle riserve (3-12 presenze)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Portieri</td>
+<td>4,53</td>
+</tr>
+<tr>
+<td>Difensori</td>
+<td>5,67</td>
+</tr>
+<tr>
+<td>Centrocampisti</td>
+<td>5,96</td>
+</tr>
+<tr>
+<td>Attaccanti</td>
+<td>6,19</td>
+</tr>
+</tbody>
+</table></div>
+<p>Nel motore: <strong>4,0 fisso per tutti</strong> — assunto senza alcuna base.</p>
+<p>Va detto però che <code>BENCH_FV</code> non modella "quanto rende una riserva" ma "quanto vale lo slot quando il
+titolare non gioca", che dipende dalle <strong>regole di sostituzione della tua lega</strong>. Va ripensato, non solo
+ritarato.</p>
+<hr />
+<h2 id="parte-4-cosa-non-va-in-ordine-di-gravita">Parte 4 — Cosa non va, in ordine di gravità</h2>
+<h3 id="1-la-pipeline-legge-colonne-sbagliate-bloccante">🔴 1. La pipeline legge colonne sbagliate (bloccante)</h3>
+<p>La <code>players.json</code> attuale ha <strong>fantamedie tra 0 e 3</strong> (media 0,03) e presenze fino a <strong>54</strong> in una stagione
+da 38. I portieri hanno "fantamedia" uguale ai gol subiti. Traduzione: <strong>il motore sta girando su dati non
+validi</strong>, non solo il Mercato ma anche i rating in Formazione e Sfida.</p>
+<p>Causa: fuori stagione la pagina statistiche di fantacalcio.it ha un'altra struttura e l'abbinamento delle
+colonne pesca le caselle sbagliate.</p>
+<p><strong>Quando</strong>: fine agosto, a campionato ripartito. Serve una diagnosi dal vivo della pagina vera.</p>
+<h3 id="2-il-feed-understat-non-esiste-bonus-performance-spento">🟠 2. Il feed Understat non esiste → bonus performance spento</h3>
+<p>L'unico pezzo del motore <em>validato sui dati</em> è inattivo, perché manca il job che produce <code>understat.json</code>
+con <code>shots_p90</code> e <code>xa_p90</code> aggiornati. Il codice è pronto e testato: manca la benzina.</p>
+<p><strong>Quando</strong>: a stagione avviata. Lo scraper Understat via <code>soccerdata</code> funziona già (l'abbiamo collaudato).</p>
+<h3 id="3-le-costanti-sbagliate-corretto-il-17072026">✅ 3. Le costanti sbagliate — CORRETTO il 17/07/2026</h3>
+<div class="tabella"><table>
+<thead>
+<tr>
+<th>Costante</th>
+<th>Prima (assunta)</th>
+<th>Ora (misurata)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>K_SHRINK</code></td>
+<td>8 per tutti</td>
+<td><strong>{P: 28, D: 16, C: 15, A: 19}</strong></td>
+</tr>
+<tr>
+<td>forza avversario</td>
+<td>−0,90 per tutti</td>
+<td><strong>{P: −1,018, D: −0,534, C: −0,444, A: −0,891}</strong></td>
+</tr>
+<tr>
+<td>fattore casa</td>
+<td>±0,15</td>
+<td><strong>±HOME/2 ≈ ±0,08</strong> per ruolo</td>
+</tr>
+<tr>
+<td><code>SIGMA</code></td>
+<td>P1,1 D1,2 C1,4 A1,9</td>
+<td><strong>P1,55 D1,07 C1,33 A1,90</strong></td>
+</tr>
+<tr>
+<td><code>PRIOR</code></td>
+<td>P4,6 D5,8 C6,1 A6,4</td>
+<td><strong>P5,02 D5,99 C6,20 A6,53</strong></td>
+</tr>
+<tr>
+<td>forza propria squadra</td>
+<td><em>assente</em></td>
+<td><strong>{P: 0,476, D: 0,432, C: 0,436, A: 0,464}</strong> ⬅ nuovo</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Non ricalibrate, di proposito:</strong></p>
+<ul>
+<li><code>RIG_BONUS</code> (0,30): la misura suggerisce +0,48 per gli attaccanti, ma su <strong>n &lt; 10</strong>. Troppo fragile.</li>
+<li><code>BENCH_FV</code> (4,0): va <strong>ripensato</strong>, non ritarato — dipende dalle regole di sostituzione della lega.</li>
+</ul>
+<hr />
+<h3 id="3-bis-la-verifica-delle-correzioni-funzionano-davvero">3-bis. La verifica delle correzioni: funzionano davvero?</h3>
+<p>Domanda onesta: le nuove costanti sono un miglioramento vero o sto inseguendo il rumore del 2025-26?</p>
+<p><strong>Test fuori campione</strong>: ho ri-stimato <em>tutto</em> usando solo le giornate 1-19 e verificato sulle
+giornate 20-38, che il motore non aveva mai visto.</p>
+<div class="tabella"><table>
+<thead>
+<tr>
+<th>Metrica (giornate 20-38)</th>
+<th>Vecchio</th>
+<th>Nuovo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RMSE</td>
+<td>1,4010</td>
+<td><strong>1,3936</strong> (+0,52%)</td>
+</tr>
+<tr>
+<td>MAE</td>
+<td>0,9244</td>
+<td><strong>0,9192</strong> (+0,56%)</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Capacità di ordinare i giocatori</strong> (correlazione di rango dentro ruolo e giornata — è ciò che serve
+davvero per scegliere la formazione):</p>
+<div class="tabella"><table>
+<thead>
+<tr>
+<th>Ruolo</th>
+<th>Vecchio</th>
+<th>Nuovo</th>
+<th>Δ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Portieri</strong></td>
+<td>+0,217</td>
+<td><strong>+0,278</strong></td>
+<td><strong>+0,060</strong></td>
+</tr>
+<tr>
+<td>Difensori</td>
+<td>+0,255</td>
+<td>+0,256</td>
+<td>+0,001</td>
+</tr>
+<tr>
+<td>Centrocampisti</td>
+<td>+0,194</td>
+<td>+0,226</td>
+<td>+0,032</td>
+</tr>
+<tr>
+<td>Attaccanti</td>
+<td>+0,176</td>
+<td>+0,204</td>
+<td>+0,028</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>Ablazione</strong> (quanto pesa ogni pezzo, fuori campione):</p>
+<div class="tabella"><table>
+<thead>
+<tr>
+<th>Correzione</th>
+<th>RMSE</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>solo K per ruolo</td>
+<td>1,4013 (≈ nessun guadagno)</td>
+</tr>
+<tr>
+<td>K + avversario per ruolo</td>
+<td>1,3993</td>
+</tr>
+<tr>
+<td><strong>+ forza propria squadra</strong></td>
+<td><strong>1,3936</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p>⚠️ <strong>Il contributo maggiore viene dalla forza della propria squadra</strong> — cioè dall'intuizione del 2019,
+non dalle ricalibrazioni statistiche.</p>
+<p><strong>Il test finale, e il suo limite</strong>. Schierando ogni giornata la miglior formazione 1-3-3-2 secondo
+ciascun motore:</p>
+<div class="tabella"><table>
+<thead>
+<tr>
+<th></th>
+<th>Punti medi a giornata</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Vecchio</td>
+<td>61,42</td>
+</tr>
+<tr>
+<td>Nuovo</td>
+<td><strong>61,67</strong></td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>+0,25 punti a giornata → +9,5 punti in una stagione.</strong> Ma: errore standard <strong>±0,93</strong>, t = 0,27,
+meglio in <strong>11 giornate su 18</strong>. Con 18 giornate <strong>il guadagno NON è statisticamente significativo</strong>.</p>
+<p><strong>Lettura onesta</strong>: il segno è giusto, coerente in tutte le metriche, e il miglioramento nell'ordinare
+è misurato su migliaia di osservazioni (quindi solido). Ma il beneficio finale in punti resta dentro il
+rumore e <strong>non è dimostrato</strong>. Le correzioni sono applicate perché sostituire costanti <em>inventate</em> con
+costanti <em>misurate</em> è giusto per principio — non perché sia provato che facciano vincere.</p>
+<p>Serve una seconda stagione per dirlo con certezza.</p>
+<h3 id="4-bonus-non-configurabili-per-lega">🟡 4. Bonus non configurabili per lega</h3>
+<p>Il fantavoto è calcolato con le regole classiche: <code>+3</code> gol, <code>+1</code> assist, <code>+3</code> rigore parato, <code>−3</code> rigore
+sbagliato, <code>−2</code> autogol, <code>−1</code> gol subito, <code>−0,5</code> ammonizione, <code>−1</code> espulsione.</p>
+<p>Ma le leghe cambiano: <strong>assist +1 o +3</strong>, modificatore di difesa sì/no, portiere imbattuto. Se la tua
+FantaPasseri usa regole diverse, il motore ottimizza per il gioco sbagliato.</p>
+<h3 id="5-palle-recuperate-mancano-ancora">🟡 5. Palle recuperate: mancano ancora</h3>
+<p>Il segnale difensivo del tuo Excel 2019 non è mai rientrato. Understat non le ha; legaseriea.it sì, ma ha
+rifatto l'API e va ritrovata. Con quelle, i difensori avrebbero il loro segnale proprio invece di
+accontentarsi dell'xA.</p>
+<h3 id="6-limiti-del-monte-carlo">🟡 6. Limiti del Monte Carlo</h3>
+<ul>
+<li><strong>Gaussiana</strong>: sottostima le code (il +3 del gol crea asimmetria).</li>
+<li>
+<p><strong>Indipendenza</strong>: fantavoti della stessa squadra sono correlati → <strong>la varianza del totale è sottostimata</strong>,
+  quindi le tue bande P10-P90 sono più strette del vero e la P(vittoria) è troppo "sicura" di sé.</p>
+</li>
+<li>
+<p><strong>Titolarità a mano</strong>: <code>p_tit</code> parte da 75% e la aggiusti tu. Con le probabili formazioni scaricate
+  automaticamente sarebbe un dato, non un'opinione.</p>
+</li>
+</ul>
+<h3 id="7-cose-minori">🟢 7. Cose minori</h3>
+<ul>
+<li>Nella Sfida, l'avversario è valutato con impostazioni standard (asimmetria dichiarata).</li>
+<li>Il modificatore di difesa non esiste (e romperebbe l'ottimalità del greedy: servirebbe un solver).</li>
+<li>Nessuna sincronizzazione tra dispositivi (scelta consapevole).</li>
+</ul>
+<hr />
+<h2 id="parte-5-cosa-farei-in-ordine">Parte 5 — Cosa farei, in ordine</h2>
+<ol>
+<li><strong>Agosto, a campionato avviato</strong>: riparare la pipeline (🔴 1). Senza dati veri, tutto il resto è teoria.</li>
+<li><strong>Subito dopo</strong>: aggiungere il job Understat (🟠 2) → si accende il bonus performance già validato.</li>
+<li>~~Applicare le correzioni misurate~~ ✅ <strong>fatto il 17/07/2026</strong> (vedi 3-bis).</li>
+<li><strong>Prima giornata utile</strong>: verificare le regole bonus della tua lega e renderle configurabili (🟡 4).</li>
+<li>
+<p><strong>Durante la stagione</strong>: agganciare le palle recuperate dalla Lega (🟡 5) e rifare la validazione dei
+   difensori con quel quarto segnale.</p>
+</li>
+<li>
+<p><strong>A fine stagione 2026-27</strong>: rifare <em>tutta</em> la validazione su due stagioni. Allora i pesi non saranno più
+   una fotografia, ma una stima.</p>
+</li>
+</ol>
+<hr />
+<h2 id="parte-6-una-conclusione-onesta">Parte 6 — Una conclusione onesta</h2>
+<p>Il risultato più importante di questo lavoro non è una formula: è la <strong>misura del rumore</strong> (3.6).</p>
+<p>Il fantacalcio è un gioco in cui il caso della singola giornata sovrasta la bravura di un fattore 10-28.
+Nessun algoritmo può cambiarlo. Quello che un buon motore può fare è <strong>spostare un margine sottile, e
+spostarlo sempre nella stessa direzione</strong>, per 38 giornate.</p>
+<p>Questo è esattamente ciò che il tuo Excel del 2019 già faceva, per intuizione. La differenza è che ora
+abbiamo <em>misurato</em> quanto quel margine è sottile — e sappiamo quali leve lo allargano davvero (la
+titolarità, il calendario, i tiri) e quali sono decorazione.</p>
+<p>Il <strong>Fattore C</strong>, in fondo, non era una battuta.</p>
+<hr />
+<p><em>Documento generato per Al · Fantalitico · GPL-3.0</em>
+<em>Dati: fantacalcio.it (voti stagione 2025-26, uso personale) e Understat (statistiche di prestazione).</em>
+<em>Tutte le misure sono riproducibili dai file <code>voti_2025_26_consolidati.csv</code> e <code>understat_permatch.csv</code>.</em></p>
+  </div>
+</main>
+
+<footer class="chiusura">
+  <div class="wrap">
+    <p>Fantalitico è uno strumento indipendente per il fantacalcio, non affiliato a
+       Lega Serie A, fantacalcio.it o altre piattaforme citate. Codice aperto, licenza GPL-3.0.</p>
+    <div class="link">
+      <a href="./">Presentazione</a>
+      <a href="manuale.html">Manuale utente</a>
+      <a href="metodo.html">Manuale tecnico</a>
+      <a href="https://fantalitico.datigrezzi.it/">Apri l'app</a>
+      <a href="mailto:info@datigrezzi.it">Scrivici</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

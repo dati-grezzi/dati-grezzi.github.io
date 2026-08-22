@@ -1,0 +1,118 @@
+/* Fantalitico — stile delle pagine di documentazione.
+   Stessa tavolozza della pagina di presentazione (index.html). */
+
+:root{
+  --bg:#0C1A12; --bg2:#10231A; --card:#16301F; --cardhi:#1C3B27;
+  --line:#2A4A35; --chalk:#EAF4EC; --dim:#9DB8A5;
+  --fluo:#D8F651; --amber:#FFC24B; --red:#FF6B6B; --cyan:#6BD5E1;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{
+  font-family:'Saira',system-ui,-apple-system,"Segoe UI",sans-serif;
+  background:var(--bg);color:var(--chalk);line-height:1.62;
+  font-size:16.5px;
+}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+
+/* ---------- testata ---------- */
+.testata{
+  background:linear-gradient(180deg,#0A150F 0%,var(--bg) 100%);
+  border-bottom:1px solid var(--line);padding:26px 0 34px;
+}
+.briciole{display:flex;flex-wrap:wrap;gap:10px;align-items:center;
+  font-size:13px;color:var(--dim);margin-bottom:26px}
+.briciole a{color:var(--dim);text-decoration:none;border-bottom:1px solid var(--line)}
+.briciole a:hover{color:var(--fluo)}
+.briciole span{opacity:.5}
+.testata img.logo{width:min(260px,60vw);height:auto;margin-bottom:18px}
+.kicker{
+  display:inline-block;background:var(--fluo);color:var(--bg);font-weight:800;
+  font-size:12px;letter-spacing:.08em;text-transform:uppercase;
+  padding:5px 12px;border-radius:99px;margin-bottom:14px;
+}
+
+/* ---------- indice ---------- */
+.indice{
+  background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:20px 22px;margin:34px 0 8px;
+}
+.indice h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--fluo);margin-bottom:12px}
+.indice ul{list-style:none;margin:0;padding:0}
+.indice ul ul{margin:4px 0 8px 16px;border-left:1px solid var(--line);padding-left:14px}
+.indice li{margin:3px 0}
+.indice a{color:var(--dim);text-decoration:none;font-size:14.5px}
+.indice a:hover{color:var(--chalk)}
+
+/* ---------- corpo ---------- */
+.testo{padding:14px 0 60px}
+.testo h1,.testo h2,.testo h3,.testo h4{
+  font-family:'Saira Condensed',"Saira",system-ui,sans-serif;
+  font-weight:900;letter-spacing:.02em;line-height:1.14;
+}
+.testo h1{font-size:clamp(28px,5vw,42px);margin:34px 0 10px}
+.testo h2{font-size:clamp(22px,3.6vw,30px);margin:52px 0 12px;
+  padding-top:22px;border-top:1px solid var(--line)}
+.testo h3{font-size:19px;margin:32px 0 8px;color:var(--fluo);
+  font-family:'Saira',system-ui,sans-serif;font-weight:700;letter-spacing:0}
+.testo h4{font-size:16.5px;margin:22px 0 6px;color:var(--chalk)}
+.testo p{margin:12px 0;color:var(--dim)}
+.testo p strong,.testo li strong{color:var(--chalk);font-weight:700}
+.testo em{color:var(--chalk);font-style:italic}
+.testo a{color:var(--fluo)}
+.testo ul,.testo ol{margin:12px 0 12px 22px;color:var(--dim)}
+.testo li{margin:6px 0}
+.testo hr{border:none;border-top:1px solid var(--line);margin:38px 0}
+.testo blockquote{border-left:3px solid var(--fluo);padding:2px 0 2px 16px;
+  margin:16px 0;color:var(--dim)}
+
+/* corsivo subito sotto il titolo: sottotitolo del documento */
+.testo h1 + p em{color:var(--dim);font-style:normal;font-size:14.5px;
+  letter-spacing:.04em;text-transform:uppercase}
+
+/* ---------- codice e formule ---------- */
+.testo code{
+  font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  font-size:.88em;background:var(--cardhi);color:var(--fluo);
+  padding:1px 5px;border-radius:5px;
+}
+.testo pre{
+  background:var(--card);border:1px solid var(--line);border-radius:12px;
+  padding:16px 18px;margin:18px 0;overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
+}
+.testo pre code{background:none;color:var(--chalk);padding:0;font-size:13.5px;
+  line-height:1.5;white-space:pre;display:block}
+
+/* ---------- tabelle ---------- */
+.tabella{overflow-x:auto;margin:18px 0;-webkit-overflow-scrolling:touch}
+.testo table{border-collapse:collapse;width:100%;min-width:420px;font-size:14.5px}
+.testo th,.testo td{
+  border-bottom:1px solid var(--line);padding:9px 12px;text-align:left;
+  vertical-align:top;color:var(--dim);white-space:nowrap;
+}
+.testo th{color:var(--fluo);font-weight:700;font-size:12.5px;
+  letter-spacing:.08em;text-transform:uppercase;
+  border-bottom:1px solid var(--fluo)}
+.testo td strong{color:var(--chalk)}
+.testo tbody tr:hover td{background:var(--bg2)}
+
+/* ---------- pié di pagina ---------- */
+.chiusura{background:var(--bg2);border-top:1px solid var(--line);padding:36px 0 30px}
+.chiusura p{color:var(--dim);font-size:13.5px;max-width:560px}
+.chiusura .link{display:flex;gap:18px;margin-top:16px;flex-wrap:wrap}
+.chiusura .link a{color:var(--chalk);font-size:14px;text-decoration:none;
+  border-bottom:1px solid var(--line)}
+.chiusura .link a:hover{border-bottom-color:var(--fluo);color:var(--fluo)}
+
+/* ---------- accessibilità ---------- */
+a:focus-visible,.salta:focus{outline:2px solid var(--fluo);outline-offset:3px;border-radius:3px}
+.salta{position:absolute;left:-9999px}
+.salta:focus{left:12px;top:12px;position:fixed;z-index:9;background:var(--fluo);
+  color:var(--bg);padding:10px 16px;border-radius:8px;font-weight:700;text-decoration:none}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media (max-width:640px){
+  body{font-size:16px}
+  .testo h2{margin-top:40px}
+}

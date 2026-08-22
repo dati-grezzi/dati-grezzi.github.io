@@ -111,6 +111,11 @@ main{max-width:100%;width:min(46rem,100%)}
   margin:3.4rem 0 0;padding:0;list-style:none}
 .loghi li{display:flex}
 .loghi img{display:block;height:clamp(26px,6.4vw,40px);width:auto;max-width:100%}
+/* i marchi con una pagina dietro si comportano da collegamento; gli altri no */
+.loghi a{display:block;border-radius:6px;transition:opacity .2s ease}
+.loghi a:hover img{opacity:.72}
+.loghi a:focus-visible{outline:2px solid var(--rosso);outline-offset:6px}
+@media(prefers-reduced-motion:reduce){.loghi a{transition:none}}
 
 /* ---------------- avviso e contatto ---------------- */
 .avviso{margin:3.4rem 0 0;font-size:clamp(.62rem,2.6vw,.78rem);font-weight:500;
@@ -140,9 +145,11 @@ main{max-width:100%;width:min(46rem,100%)}
   <ul class="loghi">
     <li><img src="loghi/sostituto.svg" alt="SOStituto"></li>
     <li><img src="loghi/corez.svg" alt="COREZ 4.10"></li>
-    <li><img src="loghi/geclass.svg" alt="GEclass"></li>
+    <li><a href="https://geclass.datigrezzi.it/">
+      <img src="loghi/geclass.svg" alt="GEclass"></a></li>
     <li><img src="loghi/resplesso.svg" alt="RESplesso"></li>
-    <li><img src="loghi/FANTALITICO.png" alt="FANTALITICO"></li>
+    <li><a href="fantalitico/">
+      <img src="loghi/fantalitico.png" width="1200" height="244" alt="Fantalitico"></a></li>
   </ul>
 
   <p class="avviso">Sito in costruzione</p>
@@ -189,8 +196,13 @@ const PUNTO_SOPRA_BASE = 0.665;
   nome.innerHTML='dati<b>grezz<span class="dg__i">i'
     +'<i class="dg__base"></i><i class="dg__punto"></i></span></b>';
   const sotto=document.createElement('div');sotto.className='dg__sotto';
+  // le lettere sono elementi separati per la giustificazione: per chi usa
+  // un lettore di schermo conta solo l'etichetta, non le singole lettere
+  sotto.setAttribute('aria-label', SOTTOTITOLO.replace(/ · /g, ', '));
+  sotto.setAttribute('role','text');
   for(const ch of SOTTOTITOLO){
     const s=document.createElement('span');
+    s.setAttribute('aria-hidden','true');
     if(ch===' ') s.className='sp'; else s.textContent=ch;
     sotto.appendChild(s);
   }

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manuale utente — Fantalitico</title>
+<meta name="description" content="Guida completa a Fantalitico: rosa, formazione, sfida, appunti per l'asta, mercato, Top 11 e tutte le altre funzioni, spiegate una per una.">
+<link rel="canonical" href="https://datigrezzi.it/fantalitico/manuale.html">
+<meta name="theme-color" content="#0C1A12">
+<meta name="robots" content="index, follow">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Fantalitico · datigrezzi">
+<meta property="og:locale" content="it_IT">
+<meta property="og:url" content="https://datigrezzi.it/fantalitico/manuale.html">
+<meta property="og:title" content="Manuale utente — Fantalitico">
+<meta property="og:description" content="Guida completa a Fantalitico: rosa, formazione, sfida, appunti per l'asta, mercato, Top 11 e tutte le altre funzioni, spiegate una per una.">
+<meta property="og:image" content="https://datigrezzi.it/fantalitico/anteprima.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="../marchio/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="caratteri.css">
+<link rel="stylesheet" href="documenti.css">
+</head>
+<body>
+
+<a class="salta" href="#contenuto">Vai al contenuto</a>
+
+<header class="testata">
+  <div class="wrap">
+    <nav class="briciole" aria-label="Percorso">
+      <a href="https://datigrezzi.it/">datigrezzi</a><span>/</span>
+      <a href="./">Fantalitico</a><span>/</span>
+      Manuale utente
+    </nav>
+    <img class="logo" src="../loghi/fantalitico-chiaro.png" width="1200" height="244" alt="Fantalitico">
+    <span class="kicker">Guida completa · tutte le funzioni</span>
+  </div>
+</header>
+
+<main class="wrap" id="contenuto">
+  <nav class="indice" aria-label="Indice del documento">
+    <h2>In questa pagina</h2>
+    <ul>
+<li><a href="#cose-fantalitico">Cos'è Fantalitico</a></li>
+<li><a href="#primo-avvio">Primo avvio</a></li>
+<li><a href="#rosa">Rosa</a></li>
+<li><a href="#formazione">Formazione</a></li>
+<li><a href="#sfida">Sfida</a></li>
+<li><a href="#giornata">Giornata</a></li>
+<li><a href="#appunti-per-lasta">Appunti per l'asta</a></li>
+<li><a href="#mercato">Mercato</a></li>
+<li><a href="#top-11">Top 11</a></li>
+<li><a href="#fattore-c">Fattore C</a></li>
+<li><a href="#calendario-lega">Calendario Lega</a></li>
+<li><a href="#regole-lega">Regole Lega</a></li>
+<li><a href="#chi-ce-lha">Chi ce l'ha</a></li>
+<li><a href="#listone">Listone</a></li>
+<li><a href="#domande-frequenti">Domande frequenti</a></li>
+<li><a href="#segnalare-un-problema">Segnalare un problema</a></li>
+</ul>
+  </nav>
+  <div class="testo">
+<h1 id="fantalitico-20-manuale-utente">Fantalitico 2.0 — Manuale Utente</h1>
+<p><em>Guida completa a tutte le funzioni. Gratuito, open source, nessun account richiesto.</em></p>
+<hr />
+<h2 id="cose-fantalitico">Cos'è Fantalitico</h2>
+<p>Fantalitico è un assistente per il fantacalcio (regolamento Classic, Serie A) che calcola formazioni, obiettivi d'asta e mosse di mercato a partire da dati reali: fantamedie storiche, titolarità dalle probabili formazioni, calendario, e prezzi realmente pagati in altre aste.</p>
+<p>Non sostituisce le tue decisioni — le informa. Ogni numero che vedi si può aprire e capire: non è una scatola nera.</p>
+<p><strong>È gratuito e open source</strong> (licenza GPL-3.0). Non richiede registrazione: tutti i tuoi dati (rose, leghe, appunti) restano salvati <strong>solo sul tuo telefono/browser</strong>, non su un server. Questo significa anche che se cambi dispositivo o cancelli i dati del browser, dovrai reimportare tutto da capo.</p>
+<hr />
+<h2 id="primo-avvio">Primo avvio</h2>
+<p>Fantalitico è una <strong>PWA</strong> (Progressive Web App): si apre da un link come un sito, ma si comporta come un'app installata.</p>
+<ul>
+<li><strong>iPhone/Safari</strong>: apri il link, tocca l'icona "Condividi" (il quadrato con la freccia in su), poi "Aggiungi a Home".</li>
+<li><strong>Android/Chrome</strong>: apri il link, il browser propone da solo "Aggiungi a schermata Home" — oppure trovi la voce nel menu ⋮.</li>
+</ul>
+<p>Una volta installata, si apre a schermo intero come una app normale, con la sua icona.</p>
+<p>Al primo avvio l'app scarica i dati aggiornati (giocatori, quotazioni, titolarità). In alto trovi sempre scritto quanti giocatori sono a database e la data dell'ultimo aggiornamento — se ti sembra un dato vecchio, è un buon primo indizio in caso di comportamenti strani.</p>
+<hr />
+<h2 id="rosa">Rosa</h2>
+<p>La schermata principale. Mostra tutti i giocatori della tua squadra, raggruppati per ruolo, ordinati per <strong>E[slot]</strong> — il valore atteso di quello slot in formazione, che combina:</p>
+<ul>
+<li><strong>Qualità del giocatore</strong> (fantamedia corretta, forza squadra, calendario)</li>
+<li><strong>Titolarità</strong> (probabilità che giochi davvero)</li>
+</ul>
+<p>Un giocatore fortissimo ma quasi sicuramente in panchina vale meno, in E[slot], di uno più modesto ma titolare fisso — è un calcolo pensato per la formazione, non per il valore "assoluto" del giocatore.</p>
+<p><strong>Toccando una card</strong> si apre il dettaglio: rating base, forza squadra, Δ calendario, performance, e la barretta della titolarità (modificabile a mano se hai un'informazione più recente dell'app).</p>
+<p><strong>Flag disponibili</strong> su ogni giocatore:</p>
+<ul>
+<li>🔴 <strong>Squalificato</strong> / <strong>Indisponibile</strong> — proposti in automatico dai dati, sempre verificabili e modificabili</li>
+<li>🟡 <strong>Rigorista</strong> — aggiunge un bonus al fantavoto atteso</li>
+<li><strong>EX</strong> — il giocatore non è più tesserato per un club di Serie A (dato dal listone ufficiale)</li>
+</ul>
+<p><strong>Bottone "🔄 Aggiorna con dati live"</strong>: se un giocatore era già in rosa prima che arrivasse un aggiornamento (es. un nuovo infortunio), questo bottone riallinea flag e titolarità ai dati più recenti. <strong>Attenzione</strong>: sovrascrive eventuali correzioni manuali che avevi già fatto.</p>
+<hr />
+<h2 id="formazione">Formazione</h2>
+<p>Il miglior undici possibile dalla tua rosa attuale, calcolato <strong>solo</strong> su qualità e titolarità — è una funzione universale, uguale per tutte le leghe, senza applicare capitano o modificatore di difesa (quelli sono specifici della tua lega, si trovano nel Top 11).</p>
+<p><strong>"📋 Dettagli lineup"</strong> apre una vista con <em>tutti</em> i giocatori della rosa (titolari e panchina), con schierabilità, titolarità e bonus di ognuno — utile per capire perché l'app ha scelto una formazione piuttosto che un'altra.</p>
+<hr />
+<h2 id="sfida">Sfida</h2>
+<p>Confronta la tua probabile formazione con quella dell'avversario di giornata (se hai importato il calendario di lega, l'avversario si seleziona da solo — altrimenti lo scegli a mano).</p>
+<p>Include una <strong>simulazione Monte Carlo</strong> (migliaia di giornate simulate) che mostra:</p>
+<ul>
+<li>Mediana e banda P10–P90 del punteggio totale</li>
+<li>Probabilità di superare una soglia (impostabile, o calcolata automaticamente sulla media reale della tua lega)</li>
+</ul>
+<hr />
+<h2 id="giornata">Giornata</h2>
+<p>Panoramica sulla prossima giornata di Serie A: partite in programma, differenziale di calendario per ogni squadra (quanto è favorevole l'impegno, diviso per ruolo).</p>
+<hr />
+<h2 id="appunti-per-lasta">Appunti per l'asta</h2>
+<p>Il tuo spazio per preparare l'asta: budget totale, slot per ruolo, lista di obiettivi con:</p>
+<ul>
+<li><strong>Quota</strong> — quanto <em>tu</em> hai deciso di spendere</li>
+<li><strong>Max %</strong> — percentuale massima suggerita, calcolata sul <strong>prezzo realmente pagato</strong> in migliaia di aste vere (fonte: Fantacalcio-Online), riscalata sul tuo budget. Se un giocatore non è ancora coperto da questo dato, viene usata una stima di ripiego basata su FVM e ripartizione budget per ruolo (media di più fonti verificate).</li>
+<li><strong>Prezzo</strong> — cosa hai pagato davvero, da inserire al momento dell'acquisto</li>
+</ul>
+<p><strong>Sottosezione "📊 Più comprati"</strong>: classifica dei giocatori più acquistati nelle aste reali, con percentuale di squadre che li hanno presi e prezzo medio — filtrabile per ruolo, con ricerca, e un tasto "+" per aggiungerli direttamente ai tuoi appunti.</p>
+<hr />
+<h2 id="mercato">Mercato</h2>
+<p>Consigli di acquisto/cessione basati sul confronto tra chi hai in rosa e chi è disponibile, per rinforzare i punti deboli della tua squadra.</p>
+<hr />
+<h2 id="top-11">Top 11</h2>
+<p>Classifica di lega calcolata sulla <strong>migliore formazione reale schierabile</strong> a giornata conclusa (non sulla formazione che hai effettivamente schierato) — un modo per vedere quanto le squadre di lega stanno rendendo "al meglio delle loro possibilità". Qui si applicano le vere regole della tua lega (capitano, modificatore di difesa).</p>
+<hr />
+<h2 id="fattore-c">Fattore C</h2>
+<p>Quanto la fortuna (bonus/malus, decisioni arbitrali, episodi) ha inciso sui tuoi risultati rispetto a quello che i numeri "puri" avrebbero previsto.</p>
+<hr />
+<h2 id="calendario-lega">Calendario Lega</h2>
+<p>Chi affronti ogni giornata all'interno della tua lega — usato dalla Sfida per selezionare l'avversario in automatico. Generato con un algoritmo standard (girone all'italiana, andata e ritorno) e modificabile a mano se serve.</p>
+<hr />
+<h2 id="regole-lega">Regole Lega</h2>
+<p>Configura le regole specifiche della tua lega: tipo di capitano, fasce del modificatore di difesa. Si applicano solo a <strong>Top 11</strong> e <strong>Sfida</strong>, mai alla Formazione (che resta universale).</p>
+<hr />
+<h2 id="chi-ce-lha">Chi ce l'ha</h2>
+<p>Cerca un giocatore in tutte le leghe che hai importato — utile per sapere subito se un giocatore è già stato preso da qualcun altro prima di puntarci in un mercato o un'asta di riparazione.</p>
+<hr />
+<h2 id="listone">Listone</h2>
+<p>Importa qui il file Excel delle quotazioni ufficiali (fantacalcio.it). Serve come base per FVM, quotazioni d'asta, e per riconoscere automaticamente i giocatori quando importi le rose delle tue leghe.</p>
+<hr />
+<h2 id="domande-frequenti">Domande frequenti</h2>
+<p><strong>I miei dati sono al sicuro?</strong>
+Restano sul tuo dispositivo. Nessun server raccoglie le tue rose o le tue leghe.</p>
+<p><strong>Serve pagare qualcosa?</strong>
+No. Se vuoi sostenere il progetto c'è un link di donazione libera, mai obbligatorio.</p>
+<p><strong>Perché un numero è diverso da quello che mi aspettavo?</strong>
+Apri il dettaglio del giocatore (tocca la card in Rosa) — ogni componente del calcolo è visibile. Se dopo aver controllato ti sembra comunque sbagliato, segnalacelo (vedi sotto): spesso è un dato non ancora aggiornato, a volte è un bug vero, e le segnalazioni ci aiutano a trovarli.</p>
+<p><strong>Perché la Formazione non usa capitano/modificatore di difesa?</strong>
+È una scelta voluta — la Formazione è un consiglio universale, uguale per chiunque la usi, indipendentemente dal regolamento della propria lega. Le regole specifiche si applicano in Top 11 e Sfida.</p>
+<hr />
+<h2 id="segnalare-un-problema">Segnalare un problema</h2>
+<p>Dentro l'app: <strong>Altro → Segnala un problema</strong>. Si apre un'email precompilata con contesto automatico (data dei dati, schermata che stavi guardando, browser) — basta descrivere cosa hai visto e cosa ti aspettavi.</p>
+<hr />
+<p><em>Fantalitico non è affiliato a Lega Serie A, fantacalcio.it o altre piattaforme citate. I dati provengono da fonti pubbliche, incrociati e aggiornati automaticamente due volte al giorno.</em></p>
+  </div>
+</main>
+
+<footer class="chiusura">
+  <div class="wrap">
+    <p>Fantalitico è uno strumento indipendente per il fantacalcio, non affiliato a
+       Lega Serie A, fantacalcio.it o altre piattaforme citate. Codice aperto, licenza GPL-3.0.</p>
+    <div class="link">
+      <a href="./">Presentazione</a>
+      <a href="manuale.html">Manuale utente</a>
+      <a href="metodo.html">Manuale tecnico</a>
+      <a href="https://fantalitico.datigrezzi.it/">Apri l'app</a>
+      <a href="mailto:info@datigrezzi.it">Scrivici</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

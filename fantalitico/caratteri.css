@@ -1,0 +1,18 @@
+/* Caratteri ospitati qui, non su server esterni: nessuna richiesta verso terzi
+   e resa identica ovunque. Saira e Saira Condensed, SIL OFL 1.1 (vedi
+   ../caratteri/OFL-Saira.txt). Sottoinsieme latino + punteggiatura + simboli
+   matematici: greco ed emoji ricadono sul carattere di sistema, per scelta. */
+
+@font-face{font-family:'Saira';font-style:normal;font-weight:400;font-display:swap;
+  src:url('../caratteri/Saira-400.woff2') format('woff2')}
+@font-face{font-family:'Saira';font-style:italic;font-weight:400;font-display:swap;
+  src:url('../caratteri/Saira-Italic-400.woff2') format('woff2')}
+@font-face{font-family:'Saira';font-style:normal;font-weight:700;font-display:swap;
+  src:url('../caratteri/Saira-700.woff2') format('woff2')}
+@font-face{font-family:'Saira';font-style:normal;font-weight:800;font-display:swap;
+  src:url('../caratteri/Saira-800.woff2') format('woff2')}
+
+@font-face{font-family:'Saira Condensed';font-style:normal;font-weight:700;font-display:swap;
+  src:url('../caratteri/SairaCondensed-700.woff2') format('woff2')}
+@font-face{font-family:'Saira Condensed';font-style:normal;font-weight:900;font-display:swap;
+  src:url('../caratteri/SairaCondensed-900.woff2') format('woff2')}
