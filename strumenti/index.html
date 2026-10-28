@@ -120,6 +120,12 @@
   }
   .card.todo { opacity: .6; border-left-color: var(--linea); }
   .card img { height: 44px; width: auto; max-width: 180px; align-self: flex-start; }
+  .contatore {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.72rem;
+    color: var(--inchiostro);
+    opacity: .6;
+  }
   footer {
     text-align: center;
     font-size: 0.8rem;
@@ -216,5 +222,25 @@
 
 <footer>Strumenti open source, licenza GPL-3.0</footer>
 
+<script>
+(function () {
+  var CHIAVE = 'strumenti-conteggi';
+  var conteggi = {};
+  try { conteggi = JSON.parse(localStorage.getItem(CHIAVE)) || {}; } catch (e) {}
+
+  document.querySelectorAll('a.card').forEach(function (card) {
+    var id = card.getAttribute('href');
+    var etichetta = document.createElement('span');
+    etichetta.className = 'contatore';
+    etichetta.textContent = 'Aperture: ' + (conteggi[id] || 0);
+    card.appendChild(etichetta);
+
+    card.addEventListener('click', function () {
+      conteggi[id] = (conteggi[id] || 0) + 1;
+      try { localStorage.setItem(CHIAVE, JSON.stringify(conteggi)); } catch (e) {}
+    });
+  });
+})();
+</script>
 </body>
 </html>
