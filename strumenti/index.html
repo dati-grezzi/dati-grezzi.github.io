@@ -5,216 +5,199 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>datigrezzi · strumenti</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;700&family=IBM+Plex+Mono:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" href="../marchio/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../marchio/favicon-32.png" sizes="32x32" type="image/png">
 <style>
-  :root {
-    --avorio: #F7F3EA;
-    --inchiostro: #1F2A30;
-    --petrolio: #1E5B5A;
-    --rosso: #B5432C;
-    --bianco: #FFFFFF;
-    --linea: #DDD6C6;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --avorio: #16201F;
-      --inchiostro: #EDE8DC;
-      --petrolio: #5FB3AE;
-      --rosso: #E07A5F;
-      --bianco: #1B2726;
-      --linea: #2E3D3C;
-    }
-  }
-  :root[data-theme="dark"] {
-    --avorio: #16201F;
-    --inchiostro: #EDE8DC;
-    --petrolio: #5FB3AE;
-    --rosso: #E07A5F;
-    --bianco: #1B2726;
-    --linea: #2E3D3C;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--avorio);
-    color: var(--inchiostro);
-    font-family: Inter, system-ui, sans-serif;
-    min-height: 100vh;
-  }
-  header {
-    padding: 48px 20px 28px;
-    text-align: center;
-    border-bottom: 1px solid var(--linea);
-  }
-  .logo {
-    display: inline-block;
-    text-decoration: none;
-    color: var(--inchiostro);
-    font-family: "Zilla Slab", Georgia, serif;
-    font-weight: 700;
-    font-size: clamp(2.2rem, 7vw, 3.2rem);
-    line-height: 1;
-  }
-  .logo .dot { color: var(--petrolio); }
-  .tagline {
-    margin-top: 10px;
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-weight: 700;
-    font-size: 0.8rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--petrolio);
-    text-align: justify;
-    text-align-last: justify;
-    max-width: 280px;
-    margin-inline: auto;
-  }
-  main {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 28px 20px 56px;
-  }
-  .grid {
-    display: grid;
-    gap: 16px;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  }
-  .card {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 20px;
-    background: var(--bianco);
-    border: 1px solid var(--linea);
-    border-left: 4px solid var(--petrolio);
-    border-radius: 10px;
-    text-decoration: none;
-    color: inherit;
-    transition: transform .12s ease, box-shadow .12s ease;
-  }
-  .card:hover, .card:focus-visible {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 18px rgba(0,0,0,.08);
-    outline: none;
-  }
-  .card h2 {
-    margin: 0;
-    font-family: "Zilla Slab", Georgia, serif;
-    font-size: 1.35rem;
-    font-weight: 700;
-  }
-  .card p {
-    margin: 0;
-    font-size: 0.95rem;
-    line-height: 1.45;
-  }
-  .card .meta {
-    margin-top: auto;
-    padding-top: 8px;
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.75rem;
-    color: var(--rosso);
-    letter-spacing: 0.04em;
-  }
-  .card.todo { opacity: .6; border-left-color: var(--linea); }
-  .card img { height: 44px; width: auto; max-width: 180px; align-self: flex-start; }
-  .contatore {
-    font-family: "IBM Plex Mono", ui-monospace, monospace;
-    font-size: 0.72rem;
-    color: var(--inchiostro);
-    opacity: .6;
-  }
-  footer {
-    text-align: center;
-    font-size: 0.8rem;
-    color: var(--inchiostro);
-    opacity: .6;
-    padding: 0 20px 32px;
-  }
-  a.logo:focus-visible { outline: 2px dashed var(--petrolio); outline-offset: 6px; }
+@font-face{font-family:'Zilla Slab';font-style:normal;font-weight:700;font-display:block;
+  src:url('../caratteri/ZillaSlab-Bold.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:700;font-display:block;
+  src:url('../caratteri/IBMPlexMono-Bold.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:block;
+  src:url('../caratteri/IBMPlexMono-Medium.woff2') format('woff2')}
+
+:root{
+  --inchiostro:#16303B;
+  --petrolio:#17605C;
+  --rosso:#B93A28;
+  --avorio:#F4F0E6;
+  --carta:#FBF9F3;
+  --linea:#DDD5C3;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--avorio);color:var(--inchiostro);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  min-height:100vh;
+}
+
+/* ---------------- marchio datigrezzi (blocco ufficiale) ---------------- */
+.dg{
+  --dg-inchiostro:#16303B; --dg-petrolio:#17605C; --dg-rosso:#B93A28; --dg-chiaro:#F4F0E6;
+  display:inline-flex;align-items:center;font-size:2.4rem;line-height:1;
+  text-decoration:none;
+}
+.dg__segno{display:block;flex:0 0 auto;margin-right:.035em}
+.dg__testo{display:flex;flex-direction:column;align-items:flex-start}
+.dg__nome{
+  font-family:'Zilla Slab',Georgia,serif;font-weight:700;
+  font-size:1em;line-height:.98;letter-spacing:-.015em;white-space:nowrap;
+  color:var(--dg-inchiostro);
+}
+.dg__nome b{font-weight:700;color:var(--dg-rosso)}
+.dg__i{position:relative;display:inline-block}
+.dg__i::after{
+  content:"";position:absolute;left:50%;top:.055em;transform:translateX(-50%);
+  width:.185em;height:.185em;border-radius:50%;background:var(--dg-petrolio);
+}
+.dg__sotto{
+  display:flex;justify-content:space-between;
+  font-family:'IBM Plex Mono',monospace;font-weight:700;
+  font-size:.158em;line-height:1;letter-spacing:0;
+  text-transform:uppercase;color:var(--dg-petrolio);margin-top:.6em;
+}
+.dg__sotto span{display:block}
+.dg__sotto .sp{width:.55em;flex:0 0 auto}
+
+/* ---------------- pagina ---------------- */
+header{
+  padding:44px 20px 32px;text-align:center;border-bottom:1px solid var(--linea);
+}
+header a.dg:focus-visible{outline:2px dashed var(--petrolio);outline-offset:8px;border-radius:6px}
+main{max-width:1040px;margin:0 auto;padding:32px 20px 56px}
+.grid{
+  display:grid;gap:18px;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+}
+.card{
+  display:flex;flex-direction:column;gap:14px;
+  padding:22px 22px 18px;
+  background:var(--carta);
+  border:1px solid var(--linea);
+  border-radius:12px;
+  text-decoration:none;color:inherit;
+  transition:transform .12s ease,box-shadow .12s ease,border-color .12s ease;
+}
+.card:hover,.card:focus-visible{
+  transform:translateY(-2px);
+  box-shadow:0 8px 22px rgba(22,48,59,.10);
+  border-color:var(--petrolio);outline:none;
+}
+.card .logo-box{height:60px;display:flex;align-items:center}
+.card .logo-box img{
+  display:block;height:100%;width:auto;max-width:100%;
+  object-fit:contain;object-position:left center;
+}
+.card p{margin:0;font-size:.95rem;line-height:1.5;color:#33474f}
+.card .piede{
+  margin-top:auto;padding-top:12px;border-top:1px solid var(--linea);
+  display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:4px 12px;
+  font-family:'IBM Plex Mono',ui-monospace,monospace;font-weight:500;font-size:.72rem;
+}
+.card .meta{color:var(--rosso);letter-spacing:.02em;white-space:nowrap}
+.card .contatore{color:var(--inchiostro);opacity:.65;white-space:nowrap;margin-left:auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+footer{
+  text-align:center;font-size:.8rem;color:var(--inchiostro);opacity:.6;padding:0 20px 32px;
+}
 </style>
 </head>
 <body>
 
 <header>
-  <!-- Il logo riporta sempre a questa pagina -->
-  <a class="logo" href="index.html" aria-label="datigrezzi, torna alla home">dati<span class="dot">.</span>grezzi</a>
-  <div class="tagline">acquisisci · elabora · decidi</div>
+  <!-- Il marchio riporta sempre a questa pagina -->
+  <a class="dg" href="./" aria-label="datigrezzi, strumenti">
+    <svg class="dg__segno" viewBox="0 0 120 120" aria-hidden="true">
+      <circle cx="21" cy="16" r="7.6" fill="#B93A28"/>
+      <circle cx="21" cy="69" r="6" fill="#B93A28"/>
+      <circle cx="21" cy="104" r="7.1" fill="#B93A28"/>
+      <circle cx="47" cy="25" r="6.4" fill="#B93A28"/>
+      <circle cx="47" cy="65" r="7.1" fill="#B93A28"/>
+      <circle cx="47" cy="95" r="6.2" fill="#B93A28"/>
+      <rect x="66.5" y="24.5" width="13" height="13" rx="5" fill="#17605C"/>
+      <rect x="66.5" y="55.5" width="13" height="13" rx="5" fill="#17605C"/>
+      <rect x="66.5" y="82.5" width="13" height="13" rx="5" fill="#17605C"/>
+      <rect x="92.5" y="27.5" width="13" height="13" rx="2" fill="#16303B"/>
+      <rect x="92.5" y="53.5" width="13" height="13" rx="2" fill="#16303B"/>
+      <rect x="92.5" y="79.5" width="13" height="13" rx="2" fill="#16303B"/>
+    </svg>
+    <div class="dg__testo">
+      <div class="dg__nome">dati<b>grezz<span class="dg__i">i</span></b></div>
+      <div class="dg__sotto" data-testo="acquisisci &middot; elabora &middot; decidi"></div>
+    </div>
+  </a>
 </header>
 
 <main>
   <div class="grid">
 
     <a class="card" href="https://aapetralia.github.io/SOStituto/">
-      <img src="https://datigrezzi.it/loghi/sostituto.svg" alt="Logo SOStituto">
-      <h2>SOStituto</h2>
+      <div class="logo-box"><img src="loghi/sostituto.svg" alt=""></div>
+      <h2 class="sr">SOStituto</h2>
       <p>Gestione delle sostituzioni dei docenti assenti, con registro dei recuperi e prospetti stampabili.</p>
-      <span class="meta">aapetralia.github.io/SOStituto</span>
+      <div class="piede"><span class="meta">aapetralia.github.io/SOStituto</span></div>
     </a>
 
     <a class="card" href="https://script.google.com/a/macros/civitanovatacito.edu.it/s/AKfycbxguAScw2yu3XuU52gbhjQppCmRAHN_jYqRFFbJEIK5t3zMyOWz_-JkF8njndahlh6Z4Q/exec">
-      <img src="loghi/ricevimento.png" alt="Logo Ricevimento Mestica">
-      <h2>Ore di ricevimento</h2>
+      <div class="logo-box"><img src="loghi/ricevimento-compatto.svg" alt=""></div>
+      <h2 class="sr">Ricevimento Mestica</h2>
       <p>Indicazione della propria ora di ricevimento per i docenti.</p>
-      <span class="meta">Google Workspace scuola</span>
+      <div class="piede"><span class="meta">Google Workspace scuola</span></div>
     </a>
 
     <a class="card" href="https://datigrezzi.it/Mesticandum/mesticandum.html">
-      <img src="loghi/mesticandum.png" alt="Logo Mesticandum">
-      <h2>Mesticandum</h2>
-      <p>Strumento per la scuola.</p>
-      <span class="meta">datigrezzi.it/Mesticandum</span>
+      <div class="logo-box"><img src="loghi/mesticandum-compatto.svg" alt=""></div>
+      <h2 class="sr">Mesticandum</h2>
+      <p>Agenda del giorno del plesso Mestica.</p>
+      <div class="piede"><span class="meta">datigrezzi.it/Mesticandum</span></div>
     </a>
 
     <a class="card" href="https://datigrezzi.it/Mesticandum/mesticandum-eventi.html">
-      <img src="loghi/mesticandum-eventi.png" alt="Logo Mesticandum Eventi">
-      <h2>Mesticandum Eventi</h2>
-      <p>Gestione degli eventi della scuola.</p>
-      <span class="meta">datigrezzi.it/Mesticandum</span>
+      <div class="logo-box"><img src="loghi/mesticandum-eventi-compatto.svg" alt=""></div>
+      <h2 class="sr">Mesticandum Eventi</h2>
+      <p>Inserimento degli eventi, per le funzioni strumentali.</p>
+      <div class="piede"><span class="meta">datigrezzi.it/Mesticandum</span></div>
     </a>
 
     <a class="card" href="https://script.google.com/a/macros/civitanovatacito.edu.it/s/AKfycbxZhHCiYk38do3SqCY9JF1W46MWYx0U2BbNB76utwCyPFIoQKACbbmxhEeDwqE9lGqAWg/exec">
-      <img src="loghi/sovrapposto.png" alt="Logo Sovrapposto">
-      <h2>Sovrapposto</h2>
-      <p>Tracciamento degli impegni dei docenti con cattedra su più scuole.</p>
-      <span class="meta">Google Workspace scuola</span>
+      <div class="logo-box"><img src="loghi/sovrapposto-compatto.svg" alt=""></div>
+      <h2 class="sr">Sovrapposto</h2>
+      <p>Impegni condivisi e sovrapposizioni dei docenti con cattedra su più scuole.</p>
+      <div class="piede"><span class="meta">Google Workspace scuola</span></div>
     </a>
 
     <a class="card" href="https://script.google.com/a/macros/civitanovatacito.edu.it/s/AKfycbzck3zW3tcdQAVMyAcHsiUd99QmPD8uBvnVWBk5ZgCfgjfVQZj8o0rZRcfE67-6ehUCDg/exec">
-      <img src="loghi/raf.png" alt="Logo RAF">
-      <h2>RAF</h2>
-      <p>Resoconto Attività Funzionali: consuntivo delle ore dei docenti.</p>
-      <span class="meta">Google Workspace scuola</span>
+      <div class="logo-box"><img src="loghi/raf-compatto.svg" alt=""></div>
+      <h2 class="sr">RAF, Resoconto attività funzionali</h2>
+      <p>Consuntivo delle ore delle attività funzionali dei docenti.</p>
+      <div class="piede"><span class="meta">Google Workspace scuola</span></div>
     </a>
 
     <a class="card" href="https://geclass.datigrezzi.it">
-      <img src="https://datigrezzi.it/loghi/geclass.svg" alt="Logo GEclass">
-      <h2>GEclass</h2>
+      <div class="logo-box"><img src="loghi/geclass.svg" alt=""></div>
+      <h2 class="sr">GEclass</h2>
       <p>Strumento per la gestione delle classi.</p>
-      <span class="meta">geclass.datigrezzi.it</span>
+      <div class="piede"><span class="meta">geclass.datigrezzi.it</span></div>
     </a>
 
     <a class="card" href="https://script.google.com/a/macros/civitanovatacito.edu.it/s/AKfycbxZ5pQqh17LT0UlhHOq4HK1jZtiwKXuyDypfF5aSioXFX48-9N4mPkKIsAboJpjZyGr/exec">
-      <img src="loghi/mesticalab.png" alt="Logo MesticaLab">
-      <h2>MesticaLab</h2>
+      <div class="logo-box"><img src="loghi/mesticalab-compatto.svg" alt=""></div>
+      <h2 class="sr">MesticaLab</h2>
       <p>Prenotazione dei laboratori di informatica per i docenti della scuola.</p>
-      <span class="meta">Google Workspace scuola</span>
+      <div class="piede"><span class="meta">Google Workspace scuola</span></div>
     </a>
 
     <a class="card" href="https://aapetralia.github.io/COREZ410/">
-      <img src="loghi/corez.png" alt="Logo COREZ 4.10">
-      <h2>COREZ 4.10</h2>
+      <div class="logo-box"><img src="loghi/corez.svg" alt=""></div>
+      <h2 class="sr">COREZ 4.10</h2>
       <p>Correzione delle verifiche.</p>
-      <span class="meta">aapetralia.github.io/COREZ410</span>
+      <div class="piede"><span class="meta">aapetralia.github.io/COREZ410</span></div>
     </a>
 
     <a class="card" href="https://datigrezzi.it/MestSpace/">
-      <img src="loghi/mestspace.png" alt="Logo MestSpace">
-      <h2>MestSpace</h2>
+      <div class="logo-box"><img src="loghi/mestspace-compatto.svg" alt=""></div>
+      <h2 class="sr">MestSpace</h2>
       <p>Gestione dei locali della scuola secondaria Mestica.</p>
-      <span class="meta">datigrezzi.it/MestSpace</span>
+      <div class="piede"><span class="meta">datigrezzi.it/MestSpace</span></div>
     </a>
 
   </div>
@@ -223,6 +206,29 @@
 <footer>Strumenti open source, licenza GPL-3.0</footer>
 
 <script>
+/* Marchio: giustifica il sottotitolo sulla larghezza del nome e allinea il segno. */
+(function(){
+  function comporre(dg){
+    var sotto=dg.querySelector('.dg__sotto'), nome=dg.querySelector('.dg__nome'),
+        segno=dg.querySelector('.dg__segno'), testo=dg.querySelector('.dg__testo');
+    if(!sotto.childElementCount){
+      for(var i=0;i<sotto.dataset.testo.length;i++){
+        var ch=sotto.dataset.testo[i], s=document.createElement('span');
+        if(ch===' ') s.className='sp'; else s.textContent=ch;
+        sotto.appendChild(s);
+      }
+    }
+    var h=testo.getBoundingClientRect().height;
+    segno.style.width=h+'px'; segno.style.height=h+'px';
+    sotto.style.width=nome.getBoundingClientRect().width+'px';
+  }
+  function tutti(){document.querySelectorAll('.dg').forEach(comporre);}
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(tutti);
+  else window.addEventListener('load',tutti);
+  window.addEventListener('resize',tutti);
+})();
+
+/* Contatore di aperture per ogni scheda (salvato nel browser). */
 (function () {
   var CHIAVE = 'strumenti-conteggi';
   var conteggi = {};
@@ -233,7 +239,7 @@
     var etichetta = document.createElement('span');
     etichetta.className = 'contatore';
     etichetta.textContent = 'Aperture: ' + (conteggi[id] || 0);
-    card.appendChild(etichetta);
+    card.querySelector('.piede').appendChild(etichetta);
 
     card.addEventListener('click', function () {
       conteggi[id] = (conteggi[id] || 0) + 1;
