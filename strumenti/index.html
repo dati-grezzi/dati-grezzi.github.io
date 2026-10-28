@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>datigrezzi · strumenti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500;700&family=IBM+Plex+Mono:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --avorio: #F7F3EA;
+    --inchiostro: #1F2A30;
+    --petrolio: #1E5B5A;
+    --rosso: #B5432C;
+    --bianco: #FFFFFF;
+    --linea: #DDD6C6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --avorio: #16201F;
+      --inchiostro: #EDE8DC;
+      --petrolio: #5FB3AE;
+      --rosso: #E07A5F;
+      --bianco: #1B2726;
+      --linea: #2E3D3C;
+    }
+  }
+  :root[data-theme="dark"] {
+    --avorio: #16201F;
+    --inchiostro: #EDE8DC;
+    --petrolio: #5FB3AE;
+    --rosso: #E07A5F;
+    --bianco: #1B2726;
+    --linea: #2E3D3C;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--avorio);
+    color: var(--inchiostro);
+    font-family: Inter, system-ui, sans-serif;
+    min-height: 100vh;
+  }
+  header {
+    padding: 48px 20px 28px;
+    text-align: center;
+    border-bottom: 1px solid var(--linea);
+  }
+  .logo {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--inchiostro);
+    font-family: "Zilla Slab", Georgia, serif;
+    font-weight: 700;
+    font-size: clamp(2.2rem, 7vw, 3.2rem);
+    line-height: 1;
+  }
+  .logo .dot { color: var(--petrolio); }
+  .tagline {
+    margin-top: 10px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--petrolio);
+    text-align: justify;
+    text-align-last: justify;
+    max-width: 280px;
+    margin-inline: auto;
+  }
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 28px 20px 56px;
+  }
+  .grid {
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 20px;
+    background: var(--bianco);
+    border: 1px solid var(--linea);
+    border-left: 4px solid var(--petrolio);
+    border-radius: 10px;
+    text-decoration: none;
+    color: inherit;
+    transition: transform .12s ease, box-shadow .12s ease;
+  }
+  .card:hover, .card:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(0,0,0,.08);
+    outline: none;
+  }
+  .card h2 {
+    margin: 0;
+    font-family: "Zilla Slab", Georgia, serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+  }
+  .card p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.45;
+  }
+  .card .meta {
+    margin-top: auto;
+    padding-top: 8px;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.75rem;
+    color: var(--rosso);
+    letter-spacing: 0.04em;
+  }
+  .card.todo { opacity: .6; border-left-color: var(--linea); }
+  .card img { height: 44px; width: auto; max-width: 180px; align-self: flex-start; }
+  footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--inchiostro);
+    opacity: .6;
+    padding: 0 20px 32px;
+  }
+  a.logo:focus-visible { outline: 2px dashed var(--petrolio); outline-offset: 6px; }
+</style>
+</head>
+<body>
+
+<header>
+  <!-- Il logo riporta sempre a questa pagina -->
+  <a class="logo" href="index.html" aria-label="datigrezzi, torna alla home">dati<span class="dot">.</span>grezzi</a>
+  <div class="tagline">acquisisci · elabora · decidi</div>
+</header>
+
+<main>
+  <div class="grid">
+
+    <a class="card" href="https://aapetralia.github.io/SOStituto/">
+      <img src="https://datigrezzi.it/loghi/sostituto.svg" alt="Logo SOStituto">
+      <h2>SOStituto</h2>
+      <p>Gestione delle sostituzioni dei docenti assenti, con registro dei recuperi e prospetti stampabili.</p>
+      <span class="meta">aapetralia.github.io/SOStituto</span>
+    </a>
+
+    <a class="card" href="https://script.google.com/a/macros/civitanovatacito.edu.it/s/AKfycbxguAScw2yu3XuU52gbhjQppCmRAHN_jYqRFFbJEIK5t3zMyOWz_-JkF8njndahlh6Z4Q/exec">
+      <img src="loghi/ricevimento.png" alt="Logo Ricevimento Mestica">
+      <h2>Ore di ricevimento</h2>
+      <p>Indicazione della propria ora di ricevimento per i docenti.</p>
+      <span class="meta">Google Workspace scuola</span>
+    </a>
+
+    <a class="card" href="https://datigrezzi.it/Mesticandum/mesticandum.html">
+      <img src="loghi/mesticandum.png" alt="Logo Mesticandum">
+      <h2>Mesticandum</h2>
+      <p>Strumento per la scuola.</p>
+      <span class="meta">datigrezzi.it/Mesticandum</span>
+    </a>
+
+    <a class="card" href="https://datigrezzi.it/Mesticandum/mesticandum-eventi.html">
+      <img src="loghi/mesticandum-eventi.png" alt="Logo Mesticandum Eventi">
+      <h2>Mesticandum Eventi</h2>
+      <p>Gestione degli eventi della scuola.</p>
+      <span class="meta">datigrezzi.it/Mesticandum</span>
+    </a>
+
+    <a class="card" href="https://script.google.com/a/macros/civitanovatacito.edu.it/s/AKfycbxZhHCiYk38do3SqCY9JF1W46MWYx0U2BbNB76utwCyPFIoQKACbbmxhEeDwqE9lGqAWg/exec">
+      <img src="loghi/sovrapposto.png" alt="Logo Sovrapposto">
+      <h2>Sovrapposto</h2>
+      <p>Tracciamento degli impegni dei docenti con cattedra su più scuole.</p>
+      <span class="meta">Google Workspace scuola</span>
+    </a>
+
+    <a class="card" href="https://script.google.com/a/macros/civitanovatacito.edu.it/s/AKfycbzck3zW3tcdQAVMyAcHsiUd99QmPD8uBvnVWBk5ZgCfgjfVQZj8o0rZRcfE67-6ehUCDg/exec">
+      <img src="loghi/raf.png" alt="Logo RAF">
+      <h2>RAF</h2>
+      <p>Resoconto Attività Funzionali: consuntivo delle ore dei docenti.</p>
+      <span class="meta">Google Workspace scuola</span>
+    </a>
+
+    <a class="card" href="https://geclass.datigrezzi.it">
+      <img src="https://datigrezzi.it/loghi/geclass.svg" alt="Logo GEclass">
+      <h2>GEclass</h2>
+      <p>Strumento per la gestione delle classi.</p>
+      <span class="meta">geclass.datigrezzi.it</span>
+    </a>
+
+    <a class="card" href="https://script.google.com/a/macros/civitanovatacito.edu.it/s/AKfycbxZ5pQqh17LT0UlhHOq4HK1jZtiwKXuyDypfF5aSioXFX48-9N4mPkKIsAboJpjZyGr/exec">
+      <img src="loghi/mesticalab.png" alt="Logo MesticaLab">
+      <h2>MesticaLab</h2>
+      <p>Prenotazione dei laboratori di informatica per i docenti della scuola.</p>
+      <span class="meta">Google Workspace scuola</span>
+    </a>
+
+    <a class="card" href="https://aapetralia.github.io/COREZ410/">
+      <img src="loghi/corez.png" alt="Logo COREZ 4.10">
+      <h2>COREZ 4.10</h2>
+      <p>Correzione delle verifiche.</p>
+      <span class="meta">aapetralia.github.io/COREZ410</span>
+    </a>
+
+    <a class="card" href="https://datigrezzi.it/MestSpace/">
+      <img src="loghi/mestspace.png" alt="Logo MestSpace">
+      <h2>MestSpace</h2>
+      <p>Gestione dei locali della scuola secondaria Mestica.</p>
+      <span class="meta">datigrezzi.it/MestSpace</span>
+    </a>
+
+  </div>
+</main>
+
+<footer>Strumenti open source, licenza GPL-3.0</footer>
+
+</body>
+</html>
