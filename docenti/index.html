@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F4F0E6">
+<title>Strumenti per i docenti · plesso Mestica</title>
+<link rel="icon" href="../marchio/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../marchio/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../marchio/icona-180.png">
+<meta name="apple-mobile-web-app-title" content="Strumenti Mestica">
+<style>
+@font-face{font-family:'Zilla Slab';font-style:normal;font-weight:700;font-display:block;
+  src:url('../caratteri/ZillaSlab-Bold.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:700;font-display:block;
+  src:url('../caratteri/IBMPlexMono-Bold.woff2') format('woff2')}
+@font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:500;font-display:block;
+  src:url('../caratteri/IBMPlexMono-Medium.woff2') format('woff2')}
+
+:root{
+  --inchiostro:#16303B;
+  --petrolio:#17605C;
+  --rosso:#B93A28;
+  --avorio:#F4F0E6;
+  --carta:#FBF9F3;
+  --linea:#DDD5C3;
+  --testo2:#33474f;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--avorio);color:var(--inchiostro);
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  min-height:100vh;line-height:1.5;
+}
+
+/* ---------------- marchio datigrezzi ---------------- */
+.dg{
+  --dg-inchiostro:#16303B; --dg-petrolio:#17605C; --dg-rosso:#B93A28;
+  display:inline-flex;align-items:center;font-size:2.1rem;line-height:1;text-decoration:none;
+}
+.dg__segno{display:block;flex:0 0 auto;margin-right:.035em}
+.dg__testo{display:flex;flex-direction:column;align-items:flex-start}
+.dg__nome{
+  font-family:'Zilla Slab',Georgia,serif;font-weight:700;
+  font-size:1em;line-height:.98;letter-spacing:-.015em;white-space:nowrap;color:var(--dg-inchiostro);
+}
+.dg__nome b{font-weight:700;color:var(--dg-rosso)}
+.dg__i{position:relative;display:inline-block}
+.dg__i::after{
+  content:"";position:absolute;left:50%;top:.055em;transform:translateX(-50%);
+  width:.185em;height:.185em;border-radius:50%;background:var(--dg-petrolio);
+}
+.dg__sotto{
+  display:flex;justify-content:space-between;
+  font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:.158em;line-height:1;
+  text-transform:uppercase;color:var(--dg-petrolio);margin-top:.6em;
+}
+.dg__sotto span{display:block}
+.dg__sotto .sp{width:.55em;flex:0 0 auto}
+
+/* ---------------- pagina ---------------- */
+header{padding:36px 20px 26px;text-align:center;border-bottom:1px solid var(--linea)}
+header h1{
+  margin:22px 0 4px;font-family:'Zilla Slab',Georgia,serif;font-weight:700;
+  font-size:clamp(1.5rem,5vw,2rem);line-height:1.15;
+}
+header p{margin:0;color:var(--testo2);font-size:.98rem}
+main{max-width:960px;margin:0 auto;padding:30px 20px 24px}
+h2.sezione{
+  margin:0 0 14px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-weight:700;
+  font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--petrolio);
+}
+
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.card{
+  display:flex;flex-direction:column;gap:14px;padding:22px 22px 18px;
+  background:var(--carta);border:1px solid var(--linea);border-radius:12px;
+  text-decoration:none;color:inherit;
+  transition:transform .12s ease,box-shadow .12s ease,border-color .12s ease;
+}
+.card:hover,.card:focus-visible{
+  transform:translateY(-2px);box-shadow:0 8px 22px rgba(22,48,59,.10);
+  border-color:var(--petrolio);outline:none;
+}
+.card .logo-box{height:60px;display:flex;align-items:center}
+.card .logo-box img{display:block;height:100%;width:auto;max-width:100%;object-fit:contain;object-position:left center}
+.card p{margin:0;font-size:.95rem;color:var(--testo2)}
+.card .piede{
+  margin-top:auto;padding-top:12px;border-top:1px solid var(--linea);
+  font-family:'IBM Plex Mono',ui-monospace,monospace;font-weight:500;font-size:.78rem;color:var(--rosso);
+}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.nota{margin:16px 2px 0;font-size:.88rem;color:var(--testo2)}
+
+/* ---------------- guida ---------------- */
+.guida{max-width:960px;margin:0 auto;padding:18px 20px 48px}
+.guida .intro{margin:0 0 16px;font-size:.95rem;color:var(--testo2)}
+.guida .intro strong{color:var(--inchiostro)}
+.passi{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.blocco{background:var(--carta);border:1px solid var(--linea);border-radius:12px;padding:20px 22px}
+.blocco h3{
+  margin:0 0 12px;display:flex;align-items:center;gap:10px;
+  font-family:'Zilla Slab',Georgia,serif;font-weight:700;font-size:1.2rem;
+}
+.blocco h3 svg{width:26px;height:26px;flex:0 0 auto;stroke:var(--petrolio);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.blocco h4{margin:14px 0 6px;font-size:.92rem;font-weight:600}
+.blocco ol{margin:0;padding-left:1.25rem;font-size:.92rem;color:var(--testo2)}
+.blocco li{margin:3px 0}
+kbd{
+  font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.82em;font-weight:500;
+  background:var(--avorio);border:1px solid var(--linea);border-bottom-width:2px;
+  border-radius:5px;padding:1px 6px;white-space:nowrap;color:var(--inchiostro);
+}
+.consiglio{
+  margin-top:14px;padding:10px 12px;border-left:3px solid var(--petrolio);
+  background:var(--avorio);border-radius:0 8px 8px 0;font-size:.88rem;color:var(--testo2);
+}
+footer{text-align:center;font-size:.8rem;opacity:.6;padding:0 20px 32px}
+header a.dg:focus-visible{outline:2px dashed var(--petrolio);outline-offset:8px;border-radius:6px}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="dg" href="./" aria-label="datigrezzi">
+    <svg class="dg__segno" viewBox="0 0 120 120" aria-hidden="true">
+      <circle cx="21" cy="16" r="7.6" fill="#B93A28"/>
+      <circle cx="21" cy="69" r="6" fill="#B93A28"/>
+      <circle cx="21" cy="104" r="7.1" fill="#B93A28"/>
+      <circle cx="47" cy="25" r="6.4" fill="#B93A28"/>
+      <circle cx="47" cy="65" r="7.1" fill="#B93A28"/>
+      <circle cx="47" cy="95" r="6.2" fill="#B93A28"/>
+      <rect x="66.5" y="24.5" width="13" height="13" rx="5" fill="#17605C"/>
+      <rect x="66.5" y="55.5" width="13" height="13" rx="5" fill="#17605C"/>
+      <rect x="66.5" y="82.5" width="13" height="13" rx="5" fill="#17605C"/>
+      <rect x="92.5" y="27.5" width="13" height="13" rx="2" fill="#16303B"/>
+      <rect x="92.5" y="53.5" width="13" height="13" rx="2" fill="#16303B"/>
+      <rect x="92.5" y="79.5" width="13" height="13" rx="2" fill="#16303B"/>
+    </svg>
+    <div class="dg__testo">
+      <div class="dg__nome">dati<b>grezz<span class="dg__i">i</span></b></div>
+      <div class="dg__sotto" data-testo="acquisisci &middot; elabora &middot; decidi"></div>
+    </div>
+  </a>
+  <h1>Strumenti per i docenti</h1>
+  <p>Plesso Mestica · tutto a portata di mano</p>
+</header>
+
+<main>
+  <h2 class="sezione">Le tue app</h2>
+  <div class="grid">
+
+    <a class="card" href="https://script.google.com/a/macros/civitanovatacito.edu.it/s/AKfycbzck3zW3tcdQAVMyAcHsiUd99QmPD8uBvnVWBk5ZgCfgjfVQZj8o0rZRcfE67-6ehUCDg/exec">
+      <div class="logo-box"><img src="loghi/raf-compatto.svg" alt=""></div>
+      <h3 class="sr">RAF, Resoconto attività funzionali</h3>
+      <p>Il consuntivo delle tue ore di attività funzionali.</p>
+      <div class="piede">Apri →</div>
+    </a>
+
+    <a class="card" href="https://script.google.com/a/macros/civitanovatacito.edu.it/s/AKfycbxZ5pQqh17LT0UlhHOq4HK1jZtiwKXuyDypfF5aSioXFX48-9N4mPkKIsAboJpjZyGr/exec">
+      <div class="logo-box"><img src="loghi/mesticalab.svg" alt=""></div>
+      <h3 class="sr">MesticaLab</h3>
+      <p>Prenota i laboratori di informatica.</p>
+      <div class="piede">Apri →</div>
+    </a>
+
+    <a class="card" href="https://script.google.com/a/macros/civitanovatacito.edu.it/s/AKfycbxZhHCiYk38do3SqCY9JF1W46MWYx0U2BbNB76utwCyPFIoQKACbbmxhEeDwqE9lGqAWg/exec">
+      <div class="logo-box"><img src="loghi/sovrapposto-compatto.svg" alt=""></div>
+      <h3 class="sr">Sovrapposto</h3>
+      <p>Gli impegni condivisi e le sovrapposizioni dei docenti su più scuole.</p>
+      <div class="piede">Apri →</div>
+    </a>
+
+  </div>
+  <p class="nota">Se richiesto, accedi con il tuo account della scuola.</p>
+</main>
+
+<section class="guida" aria-labelledby="titolo-guida">
+  <h2 class="sezione" id="titolo-guida">Salva questa pagina</h2>
+  <p class="intro">Metti tra i preferiti <strong>questa pagina</strong>, non i singoli link: da qui raggiungi tutte le app con un tocco, e se un indirizzo cambia la pagina resta sempre aggiornata.</p>
+
+  <div class="passi">
+
+    <div class="blocco">
+      <h3>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M12 16v4M8 20h8"/></svg>
+        Da computer
+      </h3>
+      <ol>
+        <li>Apri questa pagina nel browser (Chrome, Edge, Firefox o Safari).</li>
+        <li>Premi <kbd>Ctrl</kbd> + <kbd>D</kbd>. Su Mac: <kbd>⌘</kbd> + <kbd>D</kbd>.</li>
+        <li>Conferma con <strong>Fine</strong> (o <strong>Salva</strong>).</li>
+      </ol>
+      <div class="consiglio"><strong>Sempre sotto mano:</strong> mostra la barra dei preferiti con <kbd>Ctrl</kbd> + <kbd>Maiusc</kbd> + <kbd>B</kbd> (Mac: <kbd>⌘</kbd> + <kbd>Maiusc</kbd> + <kbd>B</kbd>), così la pagina è a un clic.</div>
+    </div>
+
+    <div class="blocco">
+      <h3>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.2"/><path d="M11 18.5h2"/></svg>
+        Da cellulare
+      </h3>
+      <h4>Android (Chrome)</h4>
+      <ol>
+        <li>Tocca il menu <strong>⋮</strong> in alto a destra.</li>
+        <li>Scegli <strong>Aggiungi a schermata Home</strong> per avere un'icona, oppure la stella ☆ per i preferiti.</li>
+        <li>Conferma con <strong>Aggiungi</strong>.</li>
+      </ol>
+      <h4>iPhone (Safari)</h4>
+      <ol>
+        <li>Tocca il tasto <strong>Condividi</strong> (il quadrato con la freccia in su).</li>
+        <li>Scegli <strong>Aggiungi a Home</strong> per l'icona, oppure <strong>Aggiungi segnalibro</strong>.</li>
+        <li>Conferma con <strong>Aggiungi</strong>.</li>
+      </ol>
+      <div class="consiglio"><strong>Consigliato:</strong> l'icona sulla schermata Home si apre con un tocco, come un'app.</div>
+    </div>
+
+  </div>
+</section>
+
+<footer>Strumenti open source, licenza GPL-3.0</footer>
+
+<script>
+/* Marchio: giustifica il sottotitolo sulla larghezza del nome e allinea il segno. */
+(function(){
+  function comporre(dg){
+    var sotto=dg.querySelector('.dg__sotto'), nome=dg.querySelector('.dg__nome'),
+        segno=dg.querySelector('.dg__segno'), testo=dg.querySelector('.dg__testo');
+    if(!sotto.childElementCount){
+      for(var i=0;i<sotto.dataset.testo.length;i++){
+        var ch=sotto.dataset.testo[i], s=document.createElement('span');
+        if(ch===' ') s.className='sp'; else s.textContent=ch;
+        sotto.appendChild(s);
+      }
+    }
+    var h=testo.getBoundingClientRect().height;
+    segno.style.width=h+'px'; segno.style.height=h+'px';
+    sotto.style.width=nome.getBoundingClientRect().width+'px';
+  }
+  function tutti(){document.querySelectorAll('.dg').forEach(comporre);}
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(tutti);
+  else window.addEventListener('load',tutti);
+  window.addEventListener('resize',tutti);
+})();
+</script>
+</body>
+</html>
