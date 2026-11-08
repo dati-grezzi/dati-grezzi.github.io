@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="robots" content="noindex, nofollow">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#F4F0E6">
+<meta name="theme-color" content="#E6F2FA">
 <title>Strumenti per i docenti · plesso Mestica</title>
 <link rel="icon" href="icona/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="icona/favicon-32.png" sizes="32x32" type="image/png">
@@ -19,59 +19,42 @@
   src:url('../caratteri/IBMPlexMono-Medium.woff2') format('woff2')}
 
 :root{
-  --inchiostro:#16303B;
-  --petrolio:#17605C;
-  --rosso:#B93A28;
-  --avorio:#F4F0E6;
-  --carta:#FBF9F3;
-  --linea:#DDD5C3;
-  --testo2:#33474f;
+  --inchiostro:#13233D;      /* blu notte: testi e titoli */
+  --azzurro:#0E84C4;         /* azzurro della scuola: accenti */
+  --azzurro-scuro:#0A6AA6;   /* azzurro per testi piccoli (contrasto 5,8:1) */
+  --tinta:#E6F2FA;           /* azzurro chiaro: intestazione, riquadri */
+  --fondo:#F2F8FC;           /* sfondo della pagina */
+  --carta:#FFFFFF;
+  --linea:#CFE0EC;
+  --linea-forte:#B7D3E6;
+  --testo2:#3B5068;
 }
 *{box-sizing:border-box}
 body{
-  margin:0;background:var(--avorio);color:var(--inchiostro);
+  margin:0;background:var(--fondo);color:var(--inchiostro);
   font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   min-height:100vh;line-height:1.5;
 }
 
-/* ---------------- marchio datigrezzi ---------------- */
-.dg{
-  --dg-inchiostro:#16303B; --dg-petrolio:#17605C; --dg-rosso:#B93A28;
-  display:inline-flex;align-items:center;font-size:2.1rem;line-height:1;text-decoration:none;
+/* ---------------- intestazione ---------------- */
+header{
+  padding:34px 20px 28px;text-align:center;
+  background:var(--tinta);border-bottom:1px solid var(--linea-forte);
 }
-.dg__segno{display:block;flex:0 0 auto;margin-right:.035em}
-.dg__testo{display:flex;flex-direction:column;align-items:flex-start}
-.dg__nome{
-  font-family:'Zilla Slab',Georgia,serif;font-weight:700;
-  font-size:1em;line-height:.98;letter-spacing:-.015em;white-space:nowrap;color:var(--dg-inchiostro);
-}
-.dg__nome b{font-weight:700;color:var(--dg-rosso)}
-.dg__i{position:relative;display:inline-block}
-.dg__i::after{
-  content:"";position:absolute;left:50%;top:.055em;transform:translateX(-50%);
-  width:.185em;height:.185em;border-radius:50%;background:var(--dg-petrolio);
-}
-.dg__sotto{
-  display:flex;justify-content:space-between;
-  font-family:'IBM Plex Mono',monospace;font-weight:700;font-size:.158em;line-height:1;
-  text-transform:uppercase;color:var(--dg-petrolio);margin-top:.6em;
-}
-.dg__sotto span{display:block}
-.dg__sotto .sp{width:.55em;flex:0 0 auto}
-
-/* ---------------- pagina ---------------- */
-header{padding:36px 20px 26px;text-align:center;border-bottom:1px solid var(--linea)}
+header .badge{display:block;width:56px;height:56px;margin:0 auto 14px}
 header h1{
-  margin:22px 0 4px;font-family:'Zilla Slab',Georgia,serif;font-weight:700;
-  font-size:clamp(1.5rem,5vw,2rem);line-height:1.15;
+  margin:0 0 4px;font-family:'Zilla Slab',Georgia,serif;font-weight:700;
+  font-size:clamp(1.55rem,5vw,2.1rem);line-height:1.15;
 }
 header p{margin:0;color:var(--testo2);font-size:.98rem}
+
 main{max-width:960px;margin:0 auto;padding:30px 20px 24px}
 h2.sezione{
   margin:0 0 14px;font-family:'IBM Plex Mono',ui-monospace,monospace;font-weight:700;
-  font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--petrolio);
+  font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--azzurro-scuro);
 }
 
+/* ---------------- schede ---------------- */
 .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
 .card{
   display:flex;flex-direction:column;gap:14px;padding:22px 22px 18px;
@@ -80,15 +63,15 @@ h2.sezione{
   transition:transform .12s ease,box-shadow .12s ease,border-color .12s ease;
 }
 .card:hover,.card:focus-visible{
-  transform:translateY(-2px);box-shadow:0 8px 22px rgba(22,48,59,.10);
-  border-color:var(--petrolio);outline:none;
+  transform:translateY(-2px);box-shadow:0 8px 22px rgba(14,132,196,.16);
+  border-color:var(--azzurro);outline:none;
 }
 .card .logo-box{height:60px;display:flex;align-items:center}
 .card .logo-box img{display:block;height:100%;width:auto;max-width:100%;object-fit:contain;object-position:left center}
 .card p{margin:0;font-size:.95rem;color:var(--testo2)}
 .card .piede{
   margin-top:auto;padding-top:12px;border-top:1px solid var(--linea);
-  font-family:'IBM Plex Mono',ui-monospace,monospace;font-weight:500;font-size:.78rem;color:var(--rosso);
+  font-family:'IBM Plex Mono',ui-monospace,monospace;font-weight:500;font-size:.78rem;color:var(--azzurro-scuro);
 }
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .nota{margin:16px 2px 0;font-size:.88rem;color:var(--testo2)}
@@ -103,46 +86,29 @@ h2.sezione{
   margin:0 0 12px;display:flex;align-items:center;gap:10px;
   font-family:'Zilla Slab',Georgia,serif;font-weight:700;font-size:1.2rem;
 }
-.blocco h3 svg{width:26px;height:26px;flex:0 0 auto;stroke:var(--petrolio);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.blocco h3 svg{width:26px;height:26px;flex:0 0 auto;stroke:var(--azzurro);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .blocco h4{margin:14px 0 6px;font-size:.92rem;font-weight:600}
 .blocco ol{margin:0;padding-left:1.25rem;font-size:.92rem;color:var(--testo2)}
 .blocco li{margin:3px 0}
 kbd{
   font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:.82em;font-weight:500;
-  background:var(--avorio);border:1px solid var(--linea);border-bottom-width:2px;
+  background:var(--tinta);border:1px solid var(--linea-forte);border-bottom-width:2px;
   border-radius:5px;padding:1px 6px;white-space:nowrap;color:var(--inchiostro);
 }
 .consiglio{
-  margin-top:14px;padding:10px 12px;border-left:3px solid var(--petrolio);
-  background:var(--avorio);border-radius:0 8px 8px 0;font-size:.88rem;color:var(--testo2);
+  margin-top:14px;padding:10px 12px;border-left:3px solid var(--azzurro);
+  background:var(--tinta);border-radius:0 8px 8px 0;font-size:.88rem;color:var(--testo2);
 }
-footer{text-align:center;font-size:.8rem;opacity:.6;padding:0 20px 32px}
-header a.dg:focus-visible{outline:2px dashed var(--petrolio);outline-offset:8px;border-radius:6px}
+footer{text-align:center;font-size:.8rem;color:var(--testo2);opacity:.75;padding:0 20px 32px}
 </style>
 </head>
 <body>
 
 <header>
-  <a class="dg" href="./" aria-label="datigrezzi">
-    <svg class="dg__segno" viewBox="0 0 120 120" aria-hidden="true">
-      <circle cx="21" cy="16" r="7.6" fill="#B93A28"/>
-      <circle cx="21" cy="69" r="6" fill="#B93A28"/>
-      <circle cx="21" cy="104" r="7.1" fill="#B93A28"/>
-      <circle cx="47" cy="25" r="6.4" fill="#B93A28"/>
-      <circle cx="47" cy="65" r="7.1" fill="#B93A28"/>
-      <circle cx="47" cy="95" r="6.2" fill="#B93A28"/>
-      <rect x="66.5" y="24.5" width="13" height="13" rx="5" fill="#17605C"/>
-      <rect x="66.5" y="55.5" width="13" height="13" rx="5" fill="#17605C"/>
-      <rect x="66.5" y="82.5" width="13" height="13" rx="5" fill="#17605C"/>
-      <rect x="92.5" y="27.5" width="13" height="13" rx="2" fill="#16303B"/>
-      <rect x="92.5" y="53.5" width="13" height="13" rx="2" fill="#16303B"/>
-      <rect x="92.5" y="79.5" width="13" height="13" rx="2" fill="#16303B"/>
-    </svg>
-    <div class="dg__testo">
-      <div class="dg__nome">dati<b>grezz<span class="dg__i">i</span></b></div>
-      <div class="dg__sotto" data-testo="acquisisci &middot; elabora &middot; decidi"></div>
-    </div>
-  </a>
+  <svg class="badge" viewBox="0 0 64 64" aria-hidden="true">
+    <rect x="1" y="1" width="62" height="62" rx="12.2" fill="#ffffff" stroke="#B7D3E6" stroke-width="2"/>
+    <path fill="#0E84C4" d="M52.63 21.61H48.69V42.39H52.14V48H39.29V42.39H42.09V30.18H41.9L33.48 45.39H30.72L21.66 29.59H21.46V42.39H24.52V48H11.86V42.39H15.31V21.61H11.37V16H20.82L32.2 35.84H32.39L43.08 16H52.63Z"/>
+  </svg>
   <h1>Strumenti per i docenti</h1>
   <p>Plesso Mestica · tutto a portata di mano</p>
 </header>
@@ -220,28 +186,5 @@ header a.dg:focus-visible{outline:2px dashed var(--petrolio);outline-offset:8px;
 
 <footer>Strumenti open source, licenza GPL-3.0</footer>
 
-<script>
-/* Marchio: giustifica il sottotitolo sulla larghezza del nome e allinea il segno. */
-(function(){
-  function comporre(dg){
-    var sotto=dg.querySelector('.dg__sotto'), nome=dg.querySelector('.dg__nome'),
-        segno=dg.querySelector('.dg__segno'), testo=dg.querySelector('.dg__testo');
-    if(!sotto.childElementCount){
-      for(var i=0;i<sotto.dataset.testo.length;i++){
-        var ch=sotto.dataset.testo[i], s=document.createElement('span');
-        if(ch===' ') s.className='sp'; else s.textContent=ch;
-        sotto.appendChild(s);
-      }
-    }
-    var h=testo.getBoundingClientRect().height;
-    segno.style.width=h+'px'; segno.style.height=h+'px';
-    sotto.style.width=nome.getBoundingClientRect().width+'px';
-  }
-  function tutti(){document.querySelectorAll('.dg').forEach(comporre);}
-  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(tutti);
-  else window.addEventListener('load',tutti);
-  window.addEventListener('resize',tutti);
-})();
-</script>
 </body>
 </html>
